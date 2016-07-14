@@ -2,16 +2,13 @@ const { join } = require('path')
 const WebpackDevServer = require('webpack-dev-server')
 const webpack = require('webpack')
 const config = require(join(process.cwd(), 'webpack.client.config'))
-const {
-  PUBLIC_PATH,
-  CLIENT_OUTPUT_DIR
-} = require('./constants')
+const { CLIENT_OUTPUT_DIR, ASSET_PATH } = require('./constants')
 
 const compiler = webpack(config)
 
 const server = new WebpackDevServer(compiler, {
   contentBase: CLIENT_OUTPUT_DIR,
-  publicPath: PUBLIC_PATH,
+  publicPath: ASSET_PATH,
   historyApiFallback: true,
   quiet: false,
   noInfo: false,

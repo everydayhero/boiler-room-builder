@@ -11,11 +11,13 @@ const OUTPUT_DIR = join(process.cwd(), 'dist')
 const CLIENT_OUTPUT_DIR = OUTPUT_DIR
 const SERVER_OUTPUT_DIR = OUTPUT_DIR
 
-const PUBLIC_PATH = join(
+const ASSET_PATH = process.env.ASSET_PATH || ''
+
+const PUBLIC_PATH = [
   process.env.BASE_URL || '',
   process.env.BASE_PATH || '',
-  process.env.ASSET_PATH || ''
-)
+  ASSET_PATH
+].join('/')
 
 module.exports = {
   PROD,
@@ -24,5 +26,6 @@ module.exports = {
   CLIENT_OUTPUT_DIR,
   SERVER_OUTPUT_DIR,
   INPUT_DIR,
-  PUBLIC_PATH
+  PUBLIC_PATH,
+  ASSET_PATH
 }
