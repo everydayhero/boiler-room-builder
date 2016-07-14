@@ -17,7 +17,7 @@ const PUBLIC_PATH = [
   process.env.BASE_URL,
   process.env.BASE_PATH,
   ASSET_PATH
-].filter((p) => !!p).join('') || '/'
+].filter((p) => !!p).join('') + '/'
 
 module.exports = {
   PROD,
