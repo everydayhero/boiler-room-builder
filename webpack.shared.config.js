@@ -20,7 +20,7 @@ const loaders = [
     }
   },
   {
-    test: /(\.png|\.jpg|\.svg|\.eot|\.ttf|\.woff)$/,
+    test: /(\.png|\.jpg|\.svg|\.eot|\.ttf|\.woff|\.gif)$/,
     loader: 'file-loader'
   }
 ]
