@@ -14,10 +14,10 @@ const SERVER_OUTPUT_DIR = OUTPUT_DIR
 const ASSET_PATH = process.env.ASSET_PATH || ''
 
 const PUBLIC_PATH = [
-  process.env.BASE_URL || '',
-  process.env.BASE_PATH || '',
+  process.env.BASE_URL,
+  process.env.BASE_PATH,
   ASSET_PATH
-].join('/')
+].filter((p) => !!p).join('') || '/'
 
 module.exports = {
   PROD,
