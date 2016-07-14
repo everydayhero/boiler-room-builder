@@ -8,18 +8,18 @@ A tool-chain for universal react apps
 $ npm i boiler-room-builder@everydayhero/boiler-room-runner#v1.0.0-0
 ```
 
-Now create both a `webpack.config.server.js` and a `webpack.config.client.js` file in the root of your project.
+Now create both a `webpack.server.config.js` and a `webpack.client.config.js` file in the root of your project.
 
-### `webpack.config.client.js`
-
-```
-module.exports = require('boiler-room-builder/webpack.config.client')
-```
-
-### `webpack.config.server.js`
+### `webpack.client.config.js`
 
 ```
-module.exports = require('boiler-room-builder/webpack.config.server')
+module.exports = require('boiler-room-builder/webpack.client.config')
+```
+
+### `webpack.server.config.js`
+
+```
+module.exports = require('boiler-room-builder/webpack.server.config')
 ```
 
 You can make any changes you like the default provided by both these configs.
