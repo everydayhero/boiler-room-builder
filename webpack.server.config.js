@@ -8,7 +8,7 @@ const {
 } = require('./webpack.shared.config')
 
 const {
-  SERVER_OUTPUT_DIR,
+  OUTPUT_DIR,
   SERVER_ENTRIES
 } = require('./constants')
 
@@ -24,7 +24,7 @@ module.exports = {
   target: 'node',
   output: {
     libraryTarget: 'commonjs',
-    path: SERVER_OUTPUT_DIR,
+    path: OUTPUT_DIR,
     filename: 'server.js',
     publicPath
   },

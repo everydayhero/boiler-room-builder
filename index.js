@@ -1,32 +1,40 @@
-const argv = require('yargs').argv
-const { join } = require('path')
-const { SERVER_OUTPUT_DIR } = require('./constants')
 const build = require('./build')
+const { join } = require('path')
+const {
+  serve = false,
+  serverConfig: serverConfigPath,
+  clientConfig: clientConfigPath,
+  devConfig: devConfigPath
+} = require('yargs').argv
 
-const clientConfig = require(join(process.cwd(), 'webpack.client.config'))
-const serverConfig = require(join(process.cwd(), 'webpack.server.config'))
+const clientConfig = clientConfigPath
+  ? require(join(process.cwd(), clientConfigPath))
+  : require('./webpack.client.config')
+const serverConfig = serverConfigPath
+  ? require(join(process.cwd(), serverConfigPath))
+  : require('./webpack.server.config')
+const devConfig = devConfigPath
+  ? require(join(process.cwd(), devConfigPath))
+  : require('./webpack.dev.config')
 
 const { assign } = Object
 
 build(clientConfig, ({ compilation }) => {
   const { assets } = compilation
-  const decoratedServerConfig = assign({}, serverConfig, {
-    clientAssets: assets
-  })
-  build(decoratedServerConfig, () => {
-    if (argv.serve) {
+  build(assign({}, serverConfig, { clientAssets: assets }), () => {
+    if (serve) {
       const {
         app,
         renderDocument
       } = require(
-        join(SERVER_OUTPUT_DIR, 'server.js')
+        join(serverConfig.output.path, serverConfig.output.filename)
       ).default(assets)
 
       if (process.env.NODE_ENV === 'production') {
-        require('./prod-server')(app)
+        require('./prod-server')(clientConfig.output.path, app)
       } else {
-        require('./generate-index')(renderDocument)
-        require('./dev-server')
+        require('./generate-index')(clientConfig.output.path, renderDocument)
+        require('./dev-server')(clientConfig, devConfig)
       }
     }
   })

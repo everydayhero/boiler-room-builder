@@ -1,3 +1,4 @@
+const { join } = require('path')
 const webpack = require('webpack')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -5,7 +6,8 @@ const autoprefixer = require('autoprefixer')
 const {
   PROD,
   CLIENT_ENTRIES,
-  CLIENT_OUTPUT_DIR
+  OUTPUT_DIR,
+  ASSETS_PATH
 } = require('./constants')
 
 const {
@@ -74,7 +76,7 @@ module.exports = {
   entry,
   node: { fs: 'empty' },
   output: {
-    path: CLIENT_OUTPUT_DIR,
+    path: join(OUTPUT_DIR, ASSETS_PATH),
     filename: bundleName('js', 'main'),
     publicPath
   },

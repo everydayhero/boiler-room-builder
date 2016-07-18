@@ -4,9 +4,9 @@ export default (assets) => {
     'Assets: ', Object.keys(assets).join(', ')
   ].join('\n'))
 
-  const app = (name) => Promise.resolve(
-    renderDocument(name)
-  )
+  const app = (name) => Promise.resolve({
+    result: renderDocument(name)
+  })
 
   return {
     app,
