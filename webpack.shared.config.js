@@ -11,6 +11,7 @@ const loaders = [
   {
     test: /\.js?$/,
     loader: 'babel',
+    include: new RegExp(INPUT_DIR),
     query: {
       presets: [
         'es2015',
