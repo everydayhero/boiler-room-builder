@@ -1,8 +1,6 @@
 const webpack = require('webpack')
-const { join } = require('path')
 
-module.exports = (env, callback) => {
-  const config = require(join(process.cwd(), `webpack.${env}.config`))
+module.exports = (config, callback) => {
   webpack(config).run((error, stats) => {
     if (error) throw error
 
