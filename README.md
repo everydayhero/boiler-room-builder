@@ -46,7 +46,7 @@ To do this you can create your own config, import boiler-room-runner's, make you
 #### `./webpack.server.config.js`
 
 ```
-const defaultConfig = require('boiler-room-runner/webpack.server.config')
+const defaultConfig = require('boiler-room-builder/webpack.server.config')
 const { assign } = Object
 
 module.exports = assign({}, defaultConfig, {
