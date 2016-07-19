@@ -8,25 +8,55 @@ A tool-chain for universal react apps
 $ npm i boiler-room-builder@everydayhero/boiler-room-builder#v1.0.0-0
 ```
 
-Now create both a `webpack.server.config.js` and a `webpack.client.config.js` file in the root of your project.
-
-### `webpack.client.config.js`
+Start your app
 
 ```
-module.exports = require('boiler-room-builder/webpack.client.config')
+$ brb --serve
 ```
 
-### `webpack.server.config.js`
+Build your app
 
 ```
-module.exports = require('boiler-room-builder/webpack.server.config')
+$ brb
 ```
 
-You can make any changes you like the default provided by both these configs.
+## Customizing config
 
-### Start your app
+By default boiler-room-builder uses its own webpack configs. If you'd like to use another config you can just tell `brb` where to find yours.
 
 ```
-$ node node_modules/boiler-room-builder
+$ brb \
+  --server-config='./my.webpack.server.config' \
+  --client-config='./my.webpack.client.config' \
+  --dev-config='./my.webpack.dev.config'
+```
+
+N.B you only need pass in the specific config you'd like to change:
+
+```
+$ brb --server-config='./only.change.the.webpack.server.config'
+```
+
+### Updating modifying default configs
+
+You may want to only change a few things about the default configs: add or remove plugins / loaders for example.
+
+To do this you can create your own config, import boiler-room-runner's, make your changes and export it:
+
+#### `./webpack.server.config.js`
+
+```
+const defaultConfig = require('boiler-room-runner/webpack.server.config')
+const { assign } = Object
+
+module.exports = assign({}, defaultConfig, {
+  output: assign({}, defaultConfig.output, {
+    path: './somewhere/else'
+  })
+})
+```
+
+```
+$ brb --server-config='./webpack.server.config'
 ```
 
