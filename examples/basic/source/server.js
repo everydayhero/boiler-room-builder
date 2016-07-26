@@ -1,15 +1,11 @@
-export default (assets) => {
-  const renderDocument = (name) => ([
-    'Hello, ' + name,
-    'Assets: ', Object.keys(assets).join(', ')
-  ].join('\n'))
-
-  const app = (name) => Promise.resolve({
-    result: renderDocument(name)
-  })
-
-  return {
-    app,
-    renderDocument
-  }
+const initApp = ({ assets }) => {
+  const app = (route) => (
+    Promise.resolve({
+      result: `Route: ${route}`
+    })
+  )
+  app.empty = () => 'The empty version of the app'
+  return Promise.resolve(app)
 }
+
+export default initApp

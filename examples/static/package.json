@@ -1,0 +1,19 @@
+{
+  "name": "static",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "brb build --server-config='./webpack.server.config'",
+    "start": "brb serve --server-config='./webpack.server.config'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brad Parker <hi@bradparker.com>",
+  "license": "ISC",
+  "dependencies": {
+    "boiler-room-runner": "^1.0.0-9",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-router": "^2.6.0"
+  }
+}

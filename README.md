@@ -5,19 +5,30 @@ A tool-chain for universal react apps
 ## Getting started
 
 ```
-$ npm i boiler-room-builder@everydayhero/boiler-room-builder#v1.0.0-0
+$ npm i boiler-room-builder@everydayhero/boiler-room-builder#v1.0.0-1
+```
+
+Add the scripts to your `package.json`
+
+```
+// ...
+  "scripts": {
+    "start": "brb serve",
+    "build": "brb build"
+  }
+// ...
 ```
 
 Start your app
 
 ```
-$ brb --serve
+$ npm start
 ```
 
 Build your app
 
 ```
-$ brb
+$ npm run build
 ```
 
 ## Customizing config
@@ -25,7 +36,7 @@ $ brb
 By default boiler-room-builder uses its own webpack configs. If you'd like to use another config you can just tell `brb` where to find yours.
 
 ```
-$ brb \
+$ brb serve \
   --server-config='./my.webpack.server.config' \
   --client-config='./my.webpack.client.config' \
   --dev-config='./my.webpack.dev.config'
@@ -34,7 +45,7 @@ $ brb \
 N.B you only need pass in the specific config you'd like to change:
 
 ```
-$ brb --server-config='./only.change.the.webpack.server.config'
+$ brb build --server-config='./only.change.the.webpack.server.config'
 ```
 
 ### Updating modifying default configs
@@ -57,6 +68,6 @@ module.exports = assign({}, defaultConfig, {
 ```
 
 ```
-$ brb --server-config='./webpack.server.config'
+$ brb serve --server-config='./webpack.server.config'
 ```
 

@@ -49,13 +49,6 @@ const clientPlugins = [
 
 const clientLoaders = [
   {
-    test: /\.scss$/,
-    loader: cssExtractor.extract(
-      'style',
-      'css!sass!postcss'
-    )
-  },
-  {
     test: /\.css$/,
     loader: cssExtractor.extract(
       'style',

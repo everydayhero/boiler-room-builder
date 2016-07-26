@@ -4,11 +4,13 @@ const brb = require('../')
 const { join } = require('path')
 
 const {
-  serve = false,
   serverConfig: serverConfigPath,
   clientConfig: clientConfigPath,
-  devConfig: devConfigPath
+  devConfig: devConfigPath,
+  _
 } = require('yargs').argv
+
+const action = _[0]
 
 const clientConfig = clientConfigPath
   ? require(join(process.cwd(), clientConfigPath))
@@ -21,7 +23,7 @@ const devConfig = devConfigPath
   : require('../webpack.dev.config')
 
 brb({
-  serve,
+  action,
   serverConfig,
   clientConfig,
   devConfig
