@@ -1,4 +1,5 @@
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const nodeExternals = require('webpack-node-externals')
 const {
   loaders,
   plugins,
@@ -13,15 +14,16 @@ const {
 } = require('./constants')
 
 const progress = new ProgressBarPlugin({ clear: true })
-const serverPlugins = [
-  progress
-]
+const serverPlugins = [progress]
+
+const externals = [nodeExternals()]
 
 module.exports = {
   context,
   stats,
   entry: SERVER_ENTRIES,
   target: 'node',
+  externals,
   output: {
     libraryTarget: 'commonjs',
     path: OUTPUT_DIR,
