@@ -3,6 +3,24 @@ const {
   PUBLIC_PATH
 } = require('./constants')
 
+const { keys } = Object
+
+const FILE_LOADER_TESTS = {
+  eot: '\\.eot$',
+  gif: '\\.gif$',
+  jpg: '\\.(jpg|jpeg)$',
+  png: '\\.png$',
+  svg: '\\.svg$',
+  ttf: '\\.ttf$',
+  woff: '\\.woff'
+}
+
+const FILE_LOADER_TEST = (
+  new RegExp(`(${keys(FILE_LOADER_TESTS).map(
+    (test) => FILE_LOADER_TESTS[test]
+  ).join('|')})`)
+)
+
 const loaders = [
   {
     test: /\.json$/,
@@ -21,8 +39,8 @@ const loaders = [
     }
   },
   {
-    test: /(\.png|\.jpg|\.svg|\.eot|\.ttf|\.woff|\.gif)$/,
-    loader: 'file-loader'
+    test: FILE_LOADER_TEST,
+    loader: 'file'
   }
 ]
 
