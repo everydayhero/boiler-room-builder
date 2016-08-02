@@ -1,0 +1,20 @@
+{
+  "name": "assets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "brb serve",
+    "build": "brb build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brad Parker <hi@bradparker.com>",
+  "license": "ISC",
+  "dependencies": {
+    "boiler-room-runner": "^1.0.0-9",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-router": "^2.6.1",
+    "redux": "^3.5.2"
+  }
+}
