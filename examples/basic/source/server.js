@@ -5,7 +5,7 @@ const initApp = ({ assets }) => {
     })
   )
   app.empty = () => 'The empty version of the app'
-  return Promise.resolve(app)
+  return app
 }
 
 export default initApp

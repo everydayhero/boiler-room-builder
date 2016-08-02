@@ -37,7 +37,7 @@ module.exports = class {
         source
       )
 
-      return initApp({ assets: appAssets }).then((app) => (
+      return Promise.resolve({ assets: appAssets }).then(initApp).then((app) => (
         Promise.all(app.staticRoutes.map((route) => {
           app(route).then(({ result }) => {
             assets[path.join(route.slice(1), 'index.html')] = {

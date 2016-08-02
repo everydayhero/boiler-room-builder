@@ -11,5 +11,5 @@ export default ({ assets }) => {
     '/about'
   ]
 
-  return Promise.resolve(app)
+  return app
 }
