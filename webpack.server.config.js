@@ -38,7 +38,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'css-loader/locals?module'
+        loader: 'null'
       }
     ])
   },
