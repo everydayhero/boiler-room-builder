@@ -1,15 +1,9 @@
 import { createServer } from 'boiler-room-runner'
 import routes from './routes'
 
-export default ({ assets }) => {
-  const app = createServer({
+export default ({ assets }) => (
+  createServer({
     routes,
     assets
   })
-  app.staticRoutes = [
-    '/',
-    '/about'
-  ]
-
-  return app
-}
+)
