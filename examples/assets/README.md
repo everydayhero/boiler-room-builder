@@ -1,6 +1,6 @@
 # Assets
 
-This example uses boiler room runner and show builder's support for different asset types and how you might use them in your apps.
+This example uses boiler room runner and shows builder's support for different asset types and how you might use them in your apps.
 
 ## To base your app off this example
 
@@ -20,7 +20,7 @@ $ npm i
 Make sure to now install boiler-room-builder as a depenency. It's a good idea to lock your install to a specific version:
 
 ```
-$ npm i boiler-room-builder@everydayhero/boiler-room-builder#VERSION_TAG
+$ npm i boiler-room-builder@everydayhero/boiler-room-builder#VERSION_TAG --save-dev
 ```
 
 Now you should be able to start your app:
