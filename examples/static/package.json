@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "brb build --server-config='./webpack.server.config'",
-    "start": "brb serve --server-config='./webpack.server.config'",
+    "build": "brb build --base-path=$BASE_PATH --client-config='./webpack.client.config' --server-config='./webpack.server.config'",
+    "start": "brb serve --base-path=$BASE_PATH --client-config='./webpack.client.config' --server-config='./webpack.server.config'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Brad Parker <hi@bradparker.com>",

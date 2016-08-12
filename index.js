@@ -13,8 +13,6 @@ module.exports = ({
   inputDir = join(process.cwd(), 'source'),
   outputDir = join(process.cwd(), 'dist'),
   basePath,
-  assetsPath,
-  assetsUrl,
   sharedConfig,
   serverConfig,
   clientConfig,
@@ -23,9 +21,7 @@ module.exports = ({
   const config = {
     inputDir,
     outputDir,
-    basePath,
-    assetsPath,
-    assetsUrl
+    basePath
   }
 
   const shared = applyConfig(sharedConfig, config)
@@ -37,8 +33,6 @@ module.exports = ({
     inputDir,
     outputDir,
     basePath,
-    assetsPath,
-    assetsUrl,
     sharedConfig: shared,
     serverConfig: server,
     clientConfig: client,
