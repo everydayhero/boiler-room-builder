@@ -4,9 +4,14 @@ const brb = require('../')
 const { join } = require('path')
 
 const {
+  inputDir = process.env.BRB_INPUT_DIR,
+  outputDir = process.env.BRB_OUTPUT_DIR,
+  basePath = process.env.BRB_BASE_PATH,
+  assetsPath = process.env.BRB_ASSETS_PATH,
+  assetsUrl = process.env.BRB_ASSETS_URL,
+  config: sharedConfigPath,
   serverConfig: serverConfigPath,
   clientConfig: clientConfigPath,
-  devConfig: devConfigPath,
   _
 } = require('yargs').argv
 
@@ -18,13 +23,18 @@ const clientConfig = clientConfigPath
 const serverConfig = serverConfigPath
   ? require(join(process.cwd(), serverConfigPath))
   : require('../webpack.server.config')
-const devConfig = devConfigPath
-  ? require(join(process.cwd(), devConfigPath))
-  : require('../webpack.dev.config')
+const sharedConfig = sharedConfigPath
+  ? require(join(process.cwd(), sharedConfigPath))
+  : require('../webpack.shared.config')
 
 brb({
   action,
+  inputDir,
+  outputDir,
+  basePath,
+  assetsPath,
+  assetsUrl,
   serverConfig,
   clientConfig,
-  devConfig
+  sharedConfig
 })
