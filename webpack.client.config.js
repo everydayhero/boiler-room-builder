@@ -3,7 +3,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 
 const PROD = process.env.NODE_ENV === 'production'
-const PORT = process.env.BRB_PORT || 8080
 
 const bundleName = (ext, name) => (
   PROD
@@ -44,11 +43,7 @@ const loaders = [
 ]
 
 const entry = {
-  main: (
-    PROD
-      ? []
-      : [`webpack-dev-server/client?http://0.0.0.0:${PORT}`]
-  ).concat('./client.js')
+  main: './client.js'
 }
 
 module.exports = {

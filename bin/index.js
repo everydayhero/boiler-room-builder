@@ -12,6 +12,7 @@ const {
   config: sharedConfigPath,
   serverConfig: serverConfigPath,
   clientConfig: clientConfigPath,
+  port = 8080,
   _
 } = require('yargs').argv
 
@@ -36,5 +37,6 @@ brb({
   assetsUrl,
   serverConfig,
   clientConfig,
-  sharedConfig
+  sharedConfig,
+  port
 })

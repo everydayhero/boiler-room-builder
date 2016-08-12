@@ -17,7 +17,8 @@ module.exports = ({
   assetsUrl,
   sharedConfig,
   serverConfig,
-  clientConfig
+  clientConfig,
+  port
 }) => {
   const config = {
     inputDir,
@@ -41,6 +42,7 @@ module.exports = ({
     sharedConfig: shared,
     serverConfig: server,
     clientConfig: client,
-    devConfig
+    devConfig,
+    port
   })
 }
