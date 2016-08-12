@@ -1,22 +1,9 @@
-const { join } = require('path')
 const webpack = require('webpack')
-const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
-const {
-  PROD,
-  CLIENT_ENTRIES,
-  OUTPUT_DIR,
-  ASSETS_PATH
-} = require('./constants')
 
-const {
-  loaders,
-  plugins,
-  context,
-  stats,
-  publicPath
-} = require('./webpack.shared.config')
+const PROD = process.env.NODE_ENV === 'production'
+const PORT = process.env.BRB_PORT || 8080
 
 const bundleName = (ext, name) => (
   PROD
@@ -29,25 +16,17 @@ const cssExtractor = new ExtractTextPlugin(
   { allChunks: true }
 )
 
-const define = new webpack.DefinePlugin({
-  'process.env.NODE_ENV': `'${process.env.NODE_ENV || 'development'}'`,
-  'process.env.BASE_PATH': `'${process.env.BASE_PATH || ''}'`
-})
-
 const uglify = new webpack.optimize.UglifyJsPlugin()
-const progress = new ProgressBarPlugin({ clear: true })
 
-const clientPlugins = [
-  define,
-  cssExtractor,
-  progress
+const plugins = [
+  cssExtractor
 ].concat(
   !PROD ? [] : [
     uglify
   ]
 )
 
-const clientLoaders = [
+const loaders = [
   {
     test: /\.scss$/,
     loader: cssExtractor.extract(
@@ -64,23 +43,21 @@ const clientLoaders = [
   }
 ]
 
-const entry = (
-  PROD ? [] : [
-    'webpack-dev-server/client?http://localhost:8080/'
-  ]
-).concat(CLIENT_ENTRIES)
+const entry = {
+  main: (
+    PROD
+      ? []
+      : [`webpack-dev-server/client?http://0.0.0.0:${PORT}`]
+  ).concat('./client.js')
+}
 
 module.exports = {
-  stats,
-  context,
   entry,
   node: { fs: 'empty' },
   output: {
-    path: join(OUTPUT_DIR, ASSETS_PATH),
-    filename: bundleName('js', 'main'),
-    publicPath
+    filename: bundleName('js')
   },
-  module: { loaders: loaders.concat(clientLoaders) },
-  plugins: clientPlugins.concat(plugins),
+  module: { loaders },
+  plugins,
   postcss () { return [autoprefixer] }
 }
