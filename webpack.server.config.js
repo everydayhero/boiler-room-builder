@@ -1,46 +1,29 @@
-const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
-const {
-  loaders,
-  plugins,
-  context,
-  stats,
-  publicPath
-} = require('./webpack.shared.config')
 
-const {
-  OUTPUT_DIR,
-  SERVER_ENTRIES
-} = require('./constants')
-
-const progress = new ProgressBarPlugin({ clear: true })
-const serverPlugins = [progress]
+const entry = {
+  server: './server.js'
+}
 
 const externals = [nodeExternals()]
 
+const loaders = [
+  {
+    test: /\.scss$/,
+    loader: 'null'
+  },
+  {
+    test: /\.css$/,
+    loader: 'null'
+  }
+]
+
 module.exports = {
-  context,
-  stats,
-  entry: SERVER_ENTRIES,
+  entry,
   target: 'node',
   externals,
   output: {
     libraryTarget: 'commonjs',
-    path: OUTPUT_DIR,
-    filename: 'server.js',
-    publicPath
+    filename: 'server.js'
   },
-  module: {
-    loaders: loaders.concat([
-      {
-        test: /\.scss$/,
-        loader: 'null'
-      },
-      {
-        test: /\.css$/,
-        loader: 'null'
-      }
-    ])
-  },
-  plugins: plugins.concat(serverPlugins)
+  module: { loaders }
 }

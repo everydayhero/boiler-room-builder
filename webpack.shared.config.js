@@ -1,11 +1,8 @@
-const {
-  INPUT_DIR,
-  PUBLIC_PATH
-} = require('./constants')
+const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 const { keys } = Object
 
-const FILE_LOADER_TESTS = {
+const fileLoaderTests = {
   eot: '\\.eot$',
   gif: '\\.gif$',
   jpg: '\\.(jpg|jpeg)$',
@@ -15,9 +12,9 @@ const FILE_LOADER_TESTS = {
   woff: '\\.woff'
 }
 
-const FILE_LOADER_TEST = (
-  new RegExp(`(${keys(FILE_LOADER_TESTS).map(
-    (test) => FILE_LOADER_TESTS[test]
+const fileLoaderTest = (
+  new RegExp(`(${keys(fileLoaderTests).map(
+    (test) => fileLoaderTests[test]
   ).join('|')})`)
 )
 
@@ -29,7 +26,7 @@ const loaders = [
   {
     test: /\.js?$/,
     loader: 'babel',
-    include: new RegExp(INPUT_DIR),
+    exclude: /node_modules/,
     query: {
       presets: [
         'es2015',
@@ -39,15 +36,15 @@ const loaders = [
     }
   },
   {
-    test: FILE_LOADER_TEST,
+    test: fileLoaderTest,
     loader: 'file'
   }
 ]
 
+const plugins = [new ProgressBarPlugin()]
+
 module.exports = {
   stats: { children: false },
-  context: INPUT_DIR,
-  publicPath: PUBLIC_PATH,
-  loaders,
-  plugins: []
+  module: { loaders },
+  plugins
 }
