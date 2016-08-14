@@ -1,5 +1,4 @@
 module.exports = {
-  historyApiFallback: true,
   quiet: false,
   noInfo: false,
   stats: {
