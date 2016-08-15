@@ -11,7 +11,7 @@
   "author": "Brad Parker <hi@bradparker.com>",
   "license": "ISC",
   "dependencies": {
-    "boiler-room-runner": "^1.0.0-9",
+    "boiler-room-runner": "^1.0.0-11",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-router": "^2.6.0"

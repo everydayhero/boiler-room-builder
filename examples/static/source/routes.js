@@ -5,7 +5,7 @@ import Home from './Home'
 import About from './About'
 
 export default (
-  <Route path={process.env.BASE_PATH || '/'} component={Root}>
+  <Route path='/' component={Root}>
     <IndexRoute component={Home} />
     <Route path='about' component={About} />
   </Route>
