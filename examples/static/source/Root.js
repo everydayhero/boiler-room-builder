@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 const addBase = (path) => (
-  `${(process.env.BASE_PATH || '').replace(/\/$/, '') || '/'}${path}`
+  `${(process.env.BASE_PATH || '').replace(/\/$/, '') || '/'}${path.slice(1)}`
 )
 
 export default ({ children }) => (

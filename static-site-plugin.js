@@ -1,4 +1,5 @@
 const path = require('path')
+const assetsFromStats = require('./lib/assets-from-stats')
 
 const requireFromString = (filename, code) => {
   const Module = module.constructor
@@ -26,10 +27,11 @@ module.exports = class {
       const { filename } = this
       const { path: outputPath } = outputOptions
       const { options } = compiler
-      const { assets: clientAssets, outputOptions: clientOutput } = options.clientCompilation || {}
-      const appAssets = Object.keys(clientAssets).map((asset) => (
-        clientOutput.publicPath + asset
-      ))
+      const { clientStats = {} } = options
+      const { compilation: clientCompilation = { toJson () { return {} } } } = clientStats
+      const { outputOptions: clientOutput } = clientCompilation
+
+      const appAssets = assetsFromStats(clientStats, clientOutput.publicPath)
 
       const source = assets[filename].source()
       const { default: initApp } = requireFromString(
