@@ -79,7 +79,7 @@ Where we'll look for any app entry points (`server.js`, `client.js`)
 
 Where your compiled / bundled files will be output to. Where your dev server will serve content from.
 
-### `--basepath` default `/`
+### `--base-path` default `/`
 
 This option should be changed whenever your app is not being served directly from `/`. It preforms a couple of functions.
 
