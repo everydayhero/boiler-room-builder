@@ -69,43 +69,41 @@ $ npm start
 $ npm run build
 ```
 
-## Customizing config
+## Options
 
-By default boiler-room-builder uses its own webpack configs. If you'd like to use another config you can just tell `brb` where to find yours.
+### `--input-dir` default `./source`
 
-```
-$ brb serve \
-  --server-config='./my.webpack.server.config' \
-  --client-config='./my.webpack.client.config' \
-  --dev-config='./my.webpack.dev.config'
-```
+Where we'll look for any app entry points (`server.js`, `client.js`)
 
-N.B you only need pass in the specific config you'd like to change:
+### `--output-dir` default `./dist`
 
-```
-$ brb build --server-config='./only.change.the.webpack.server.config'
-```
+Where your compiled / bundled files will be output to. Where your dev server will serve content from.
 
-### Updating modifying default configs
+### `--basepath` default `/`
 
-You may want to only change a few things about the default configs: add or remove plugins / loaders for example.
+This option should be changed whenever your app is not being served directly from `/`. It preforms a couple of functions.
 
-To do this you can create your own config, import boiler-room-runner's, make your changes and export it:
+* Any assets you require in your bundle will have this value prepended to them:
+  ```
+  import myImage from './my-image.png'
+  // /base-path-setting/hashed-filename.png
+  ```
+* When running your dev server your app will be served from this directory (to mirror how it would be served in prod):
+  ```
+  $ brb serve --basepath='my-base-path'
+  # App is now accessible from http://localhost:8080/my-base-path/
+  ```
 
-#### `./webpack.server.config.js`
+### Use the below only if you need to modify boiler room builder's default webpack configs
 
-```
-const defaultConfig = require('boiler-room-builder/webpack.server.config')
-const { assign } = Object
+#### `--shared-config`
 
-module.exports = assign({}, defaultConfig, {
-  output: assign({}, defaultConfig.output, {
-    path: './somewhere/else'
-  })
-})
-```
+Relative path to a webpack config which will be merged into both client and server config.
 
-```
-$ brb serve --server-config='./webpack.server.config'
-```
+#### `--client-config`
 
+Relative path to a webpack config specific to the client bundle.
+
+#### `--server-config`
+
+Relative path to a webpack config specific to the server bundle.
