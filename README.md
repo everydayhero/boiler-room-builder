@@ -5,7 +5,7 @@ A tool-chain for universal react apps
 ## Getting started
 
 ```
-$ npm i boiler-room-builder@everydayhero/boiler-room-builder#v1.0.0-3
+$ npm i boiler-room-builder@everydayhero/boiler-room-builder#v1.0.0-5
 ```
 
 ### Add the scripts to your `package.json`
