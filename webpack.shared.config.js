@@ -1,5 +1,3 @@
-const ProgressBarPlugin = require('progress-bar-webpack-plugin')
-
 const { keys } = Object
 
 const fileLoaderTests = {
@@ -41,7 +39,7 @@ const loaders = [
   }
 ]
 
-const plugins = [new ProgressBarPlugin()]
+const plugins = []
 
 module.exports = {
   stats: { children: false },
