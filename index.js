@@ -5,8 +5,16 @@ const { join } = require('path')
 const devConfig = require('./webpack.dev.config')
 const build = require('./lib/build')
 const serve = require('./lib/serve')
+const { assign } = Object
 
 const actions = { build, serve }
+
+const smarterMerge = (configA, configB) => {
+  const merged = merge.smart(configA, configB)
+  return assign(merged, {
+    plugins: (configA || []).plugins.concat(configB.plugins)
+  })
+}
 
 module.exports = ({
   action = 'build',
@@ -26,8 +34,8 @@ module.exports = ({
 
   const shared = applyConfig(sharedConfig, config)
 
-  const server = merge.smart(serverConfig, shared)
-  const client = merge.smart(clientConfig, shared)
+  const server = smarterMerge(serverConfig, shared)
+  const client = smarterMerge(clientConfig, shared)
 
   return actions[action]({
     inputDir,
