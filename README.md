@@ -5,7 +5,7 @@ A tool-chain for universal react apps
 ## Getting started
 
 ```
-$ npm i boiler-room-builder@everydayhero/boiler-room-builder#v1.0.0-5
+$ npm i boiler-room-builder@everydayhero/boiler-room-builder#v1.0.0-9
 ```
 
 ### Add the scripts to your `package.json`
@@ -90,13 +90,13 @@ This option should be changed whenever your app is not being served directly fro
   ```
 * When running your dev server your app will be served from this directory (to mirror how it would be served in prod):
   ```
-  $ brb serve --basepath='my-base-path'
+  $ brb serve --base-path='my-base-path'
   # App is now accessible from http://localhost:8080/my-base-path/
   ```
 
 ### Use the below only if you need to modify boiler room builder's default webpack configs
 
-#### `--shared-config`
+#### `--config`
 
 Relative path to a webpack config which will be merged into both client and server config.
 
