@@ -12,7 +12,7 @@ const actions = { build, serve }
 const smarterMerge = (configA, configB) => {
   const merged = merge.smart(configA, configB)
   return assign(merged, {
-    plugins: (configA || []).plugins.concat(configB.plugins)
+    plugins: (configA.plugins || []).concat(configB.plugins || [])
   })
 }
 
