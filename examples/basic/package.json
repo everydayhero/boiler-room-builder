@@ -1,5 +1,5 @@
 {
-  "name": "assets",
+  "name": "basic",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,11 +9,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Brad Parker <hi@bradparker.com>",
-  "license": "ISC",
-  "dependencies": {
-    "boiler-room-runner": "^1.0.0-9",
-    "react": "^0.14.8",
-    "react-dom": "^0.14.8",
-    "react-router": "^2.6.1"
-  }
+  "license": "ISC"
 }
