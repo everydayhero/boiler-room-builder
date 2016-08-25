@@ -16,9 +16,13 @@ const cssExtractor = new ExtractTextPlugin(
 )
 
 const uglify = new webpack.optimize.UglifyJsPlugin()
+const define = new webpack.DefinePlugin({
+  'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`
+})
 
 const plugins = [
-  cssExtractor
+  cssExtractor,
+  define
 ].concat(
   !PROD ? [] : [
     uglify
