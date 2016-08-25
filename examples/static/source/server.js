@@ -9,6 +9,7 @@ export default ({ assets }) => {
     assets,
     basepath
   })
+
   app.staticRoutes = [
     '/',
     '/about'
