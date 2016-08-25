@@ -1,2 +1,3 @@
-class Foo {}
-export default Foo
+const root = document.getElementById('mount')
+
+root.innerHTML = `Route: ${location.pathname}`
