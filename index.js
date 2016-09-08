@@ -2,9 +2,14 @@ const merge = require('webpack-merge')
 const { applyConfig } = require('./lib/config-helpers')
 const { join } = require('path')
 
-const devConfig = require('./webpack.dev.config')
+const defaultSharedConfig = require('./webpack.shared.config')
+const defaultClientConfig = require('./webpack.client.config')
+const defaultServerConfig = require('./webpack.server.config')
+const defaultDevConfig = require('./webpack.dev.config')
+
 const build = require('./lib/build')
 const serve = require('./lib/serve')
+
 const { assign } = Object
 
 const actions = { build, serve }
@@ -22,8 +27,9 @@ module.exports = ({
   outputDir = join(process.cwd(), 'dist'),
   basePath,
   sharedConfig,
-  serverConfig,
   clientConfig,
+  serverConfig,
+  devConfig,
   port
 }) => {
   const config = {
@@ -32,19 +38,42 @@ module.exports = ({
     basePath
   }
 
-  const shared = applyConfig(sharedConfig, config)
-
-  const server = smarterMerge(serverConfig, shared)
-  const client = smarterMerge(clientConfig, shared)
+  const shared = smarterMerge(
+    defaultSharedConfig,
+    sharedConfig
+  )
+  const server = applyConfig(
+    smarterMerge(
+      shared,
+      smarterMerge(
+        defaultServerConfig,
+        serverConfig
+      )
+    ),
+    config
+  )
+  const client = applyConfig(
+    smarterMerge(
+      shared,
+      smarterMerge(
+        defaultClientConfig,
+        clientConfig
+      )
+    ),
+    config
+  )
+  const dev = smarterMerge(
+    defaultDevConfig,
+    devConfig
+  )
 
   return actions[action]({
     inputDir,
     outputDir,
     basePath,
-    sharedConfig: shared,
     serverConfig: server,
     clientConfig: client,
-    devConfig,
+    devConfig: dev,
     port
   })
 }
