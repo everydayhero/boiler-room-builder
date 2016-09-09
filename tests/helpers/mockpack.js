@@ -1,10 +1,22 @@
 const webpack = require('webpack/lib/webpack.web.js')
+const MemoryFS = require('memory-fs')
 
-module.exports = (fileSystem) => (
-  (options, callback) => (
-    webpack(
+const mockpack = (fileSystem) => (
+  (options, callback) => {
+    return webpack(
       Object.assign({}, options, { inputFileSystem: fileSystem, outputFileSystem: fileSystem }),
       callback
-    )
-  )
+      )
+  }
 )
+
+const defaultFileStructure = ( ) => {
+  const fs = new MemoryFS()
+  fs.mkdirSync('/source')
+  fs.writeFileSync('/source/client.js', 'yolo-client')
+  fs.writeFileSync('/source/server.js', 'yolo-server')
+
+  return fs
+}
+
+module.exports = { mockpack, defaultFileStructure }
