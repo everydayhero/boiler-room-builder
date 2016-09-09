@@ -25,12 +25,12 @@ module.exports = ({
   action = 'build',
   inputDir = join(process.cwd(), 'source'),
   outputDir = join(process.cwd(), 'dist'),
-  basePath,
-  sharedConfig,
-  clientConfig,
-  serverConfig,
-  devConfig,
-  port
+  basePath = '/',
+  sharedConfig = {},
+  serverConfig = {},
+  clientConfig = {},
+  devConfig = {},
+  port = 8080
 }) => {
   const config = {
     inputDir,
