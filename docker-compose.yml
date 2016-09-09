@@ -1,0 +1,14 @@
+build:
+  image: node:latest
+  working_dir: /code
+  volumes:
+    - .:/code
+    - $SSH_AUTH_SOCK:/ssh-agent
+  environment:
+    - BUILDKITE_AGENT_ACCESS_TOKEN
+    - BUILDKITE_JOB_ID
+    - BUILDKITE_BUILD_ID
+    - BUILDKITE_BUILD_NUMBER
+    - GITHUB_RELEASE_ACCESS_TOKEN
+    - DOCKER_HUB_TRIGGER_TOKEN
+    - SSH_AUTH_SOCK=/ssh-agent

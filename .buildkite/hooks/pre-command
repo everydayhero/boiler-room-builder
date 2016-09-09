@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -eu
+
+export COMPOSE_FILE="./docker-compose.yml"
+export COMPOSE_PROJECT_NAME="boiler_room_builder_${BUILDKITE_JOB_ID//-}"
