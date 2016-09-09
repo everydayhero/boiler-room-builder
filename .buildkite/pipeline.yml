@@ -1,0 +1,9 @@
+---
+steps:
+
+  - wait
+
+  - name: ":nodejs: Test It"
+    command: docker-compose run build ci/test
+    agents:
+      queue: native
