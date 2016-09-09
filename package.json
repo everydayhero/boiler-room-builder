@@ -38,6 +38,7 @@
     "yargs": "^4.8.0"
   },
   "devDependencies": {
-    "ava": "^0.16.0"
+    "ava": "^0.16.0",
+    "proxyquire": "^1.7.10"
   }
 }

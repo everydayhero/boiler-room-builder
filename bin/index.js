@@ -10,6 +10,7 @@ const {
   config: sharedConfigPath,
   serverConfig: serverConfigPath,
   clientConfig: clientConfigPath,
+  devConfig: devConfigPath,
   port = 8080,
   _
 } = require('yargs').argv
@@ -18,13 +19,16 @@ const action = _[0]
 
 const clientConfig = clientConfigPath
   ? require(join(process.cwd(), clientConfigPath))
-  : require('../webpack.client.config')
+  : {}
 const serverConfig = serverConfigPath
   ? require(join(process.cwd(), serverConfigPath))
-  : require('../webpack.server.config')
+  : {}
 const sharedConfig = sharedConfigPath
   ? require(join(process.cwd(), sharedConfigPath))
-  : require('../webpack.shared.config')
+  : {}
+const devConfig = devConfigPath
+  ? require(join(process.cwd(), devConfigPath))
+  : {}
 
 brb({
   action,
@@ -34,5 +38,6 @@ brb({
   serverConfig,
   clientConfig,
   sharedConfig,
+  devConfig,
   port
 })
