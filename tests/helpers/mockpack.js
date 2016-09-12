@@ -19,4 +19,10 @@ const defaultFileStructure = ( ) => {
   return fs
 }
 
-module.exports = { mockpack, defaultFileStructure }
+const defaultProxyOptions = (fileSystem = defaultFileStructure) => {
+  return {
+    webpack: mockpack(fileSystem()),
+  }
+}
+
+module.exports = { mockpack, defaultFileStructure, defaultProxyOptions }
