@@ -7,7 +7,7 @@ A tool-chain for universal react apps
 ## Getting started
 
 ```
-$ npm i boiler-room-builder@everydayhero/boiler-room-builder#v1.0.0-10
+$ npm i boiler-room-builder --save-dev
 ```
 
 ### Add the scripts to your `package.json`
@@ -23,37 +23,32 @@ $ npm i boiler-room-builder@everydayhero/boiler-room-builder#v1.0.0-10
 
 ### Create your `source/client.js` and `source/server.js` files
 
+Refer to the [basic example](https://github.com/everydayhero/boiler-room-builder/tree/master/examples/basic), to see what a boiler-room-builder setup looks like without any external libs.
+
 **Server.js**
 
 If you use [Boiler room runner](https://github.com/everydayhero/boiler-room-runner#in-your-serverjs-file) to bootstrap your app, this will be simpler :).
 
-Your server.js file must export a function which takes a compilation info object and returns an app function.
+Your server.js file must export a function which takes some compilation info and returns a function.
 
-The app function must have an `empty()` method which will return the HTML document for your app, without any react content.
-
-The app function will take a route return a Promise which may:
+The returned function will take a route return a Promise which may:
 * Resolve to the rendered content for that route under a `result` key _or_
-* Resolve to a path to redirect to under a `redirect` key _or_
+* Resolve to a location to redirect to under a `redirect` key _or_
 * Reject with an error
 
 ```
 export default function ({ assets = [] }) {
-  function app (route = '/') {
+  return function (route = '/') {
     return Promise.resolve({
       result: '<html />',
       // OR
-      redirect: '/another-location'
+      redirect: { pathname: '/another-location' }
     })
   }
-
-  app.empty = function empty () {
-    // You might want to inject the assets list into your doc.
-    return '<html>YOUR EMPTY HTML TEMPLATE</html>'
-  }
-
-  return app
 }
 ```
+
+Why return a function like this? The exported function is passed into a Promise chain, which allows you to perform some async setup for your app before we try to call it to render any html.
 
 **Client.js**
 
