@@ -33,6 +33,7 @@
     "serve-static": "^1.11.1",
     "snazzy": "^5.0.0",
     "standard": "^8.1.0",
+    "standard-loader": "^5.0.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dashboard": "0.0.1",

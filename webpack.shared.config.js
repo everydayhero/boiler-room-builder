@@ -36,6 +36,11 @@ const loaders = [
   {
     test: fileLoaderTest,
     loader: 'file'
+  },
+  {
+    test: /\.jsx?$/,
+    loader: 'standard',
+    exclude: /node_modules/
   }
 ]
 
