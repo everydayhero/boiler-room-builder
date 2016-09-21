@@ -16,6 +16,7 @@ const {
 } = require('yargs').argv
 
 const action = _[0]
+const extras = _.slice(1).join(' ')
 
 const clientConfig = clientConfigPath
   ? require(join(process.cwd(), clientConfigPath))
@@ -39,5 +40,6 @@ brb({
   clientConfig,
   sharedConfig,
   devConfig,
-  port
+  port,
+  extras
 })

@@ -1,5 +1,5 @@
 --recursive
---require ./mocha/setup.js
---require ./mocha/common.js
+--require node_modules/boiler-room-builder/mocha/setup.js
+--require node_modules/boiler-room-builder/mocha/common.js
 --compilers babel-core/register
 --ui bdd

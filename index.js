@@ -4,7 +4,9 @@ const configMerge = require('./lib/configMerge')
 const build = require('./lib/build')
 const serve = require('./lib/serve')
 const lint = require('./lib/lint')
+const test = require('./lib/test')
 
+const actions = { build, serve, lint, test }
 
 module.exports = ({
   action = 'build',
@@ -15,7 +17,8 @@ module.exports = ({
   serverConfig = {},
   clientConfig = {},
   devConfig = {},
-  port = 8080
+  port = 8080,
+  extras
 }) => {
   let config = {}
 
@@ -39,5 +42,6 @@ module.exports = ({
     clientConfig: config.client,
     devConfig: config.dev,
     port,
+    extras
   })
 }
