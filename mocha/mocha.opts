@@ -1,0 +1,5 @@
+--recursive
+--require ./mocha/setup.js
+--require ./mocha/common.js
+--compilers babel-core/register
+--ui bdd
