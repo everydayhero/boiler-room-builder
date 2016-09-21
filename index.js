@@ -9,10 +9,11 @@ const defaultDevConfig = require('./webpack.dev.config')
 
 const build = require('./lib/build')
 const serve = require('./lib/serve')
+const lint = require('./lib/lint')
 
 const { assign } = Object
 
-const actions = { build, serve }
+const actions = { build, serve, lint }
 
 const smarterMerge = (configA, configB) => {
   const merged = merge.smart(configA, configB)
@@ -32,6 +33,10 @@ module.exports = ({
   devConfig = {},
   port = 8080
 }) => {
+  if (action === 'lint') {
+    return lint({ inputDir })
+  }
+
   const config = {
     inputDir,
     outputDir,

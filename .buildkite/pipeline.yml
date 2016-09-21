@@ -3,6 +3,11 @@ steps:
 
   - wait
 
+  - name: ":javascript: Lint It"
+    command: docker-compose run build ci/lint
+    agents:
+      queue: native
+
   - name: ":nodejs: Test It"
     command: docker-compose run build ci/test
     agents:
