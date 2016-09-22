@@ -16,7 +16,13 @@ $ npm i boiler-room-builder --save-dev
 // ...
   "scripts": {
     "start": "brb serve",
-    "build": "brb build"
+    "build": "brb build",
+    "lint": "brb lint",
+    "lint-fix": "brb lint -- --fix",
+    "lint-watch": "brb lint -- --watch",
+    "test": "brb test",
+    "test-debug": "brb test -- debug",
+    "test-watch": "brb test -- --watch",
   }
 // ...
 ```
@@ -104,3 +110,24 @@ Relative path to a webpack config specific to the client bundle.
 #### `--server-config`
 
 Relative path to a webpack config specific to the server bundle.
+
+
+## Test your application
+
+```sh
+npm run test
+npm run test-watch # this is to watch your tests
+```
+
+Boiler-room-builder makes it easy to have your application tested using mocha.
+By default it looks for your tests using the pattern `source/**/*-test.js`. If your source code is not under the `source` directory use the `--input-dir` param as described under the heading "Options".
+
+## Lint your application
+
+Boiler-room-builder makes it easy lint your application using StandardJS
+If you want to manually run the linter (for example as part of a buildkite pipeline) or to use the `--fix` option run one of the commands described below.
+
+```sh
+npm run lint
+npm run lint-fix # this is to watch your tests
+```
