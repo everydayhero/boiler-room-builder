@@ -1,26 +1,12 @@
-const merge = require('webpack-merge')
-const { applyConfig } = require('./lib/config-helpers')
 const { join } = require('path')
-
-const defaultSharedConfig = require('./webpack.shared.config')
-const defaultClientConfig = require('./webpack.client.config')
-const defaultServerConfig = require('./webpack.server.config')
-const defaultDevConfig = require('./webpack.dev.config')
+const configMerge = require('./lib/configMerge')
 
 const build = require('./lib/build')
 const serve = require('./lib/serve')
 const lint = require('./lib/lint')
+const test = require('./lib/test')
 
-const { assign } = Object
-
-const actions = { build, serve, lint }
-
-const smarterMerge = (configA, configB) => {
-  const merged = merge.smart(configA, configB)
-  return assign(merged, {
-    plugins: (configA.plugins || []).concat(configB.plugins || [])
-  })
-}
+const actions = { build, serve, lint, test }
 
 module.exports = ({
   action = 'build',
@@ -31,54 +17,31 @@ module.exports = ({
   serverConfig = {},
   clientConfig = {},
   devConfig = {},
-  port = 8080
+  port = 8080,
+  extras
 }) => {
-  if (action === 'lint') {
-    return lint({ inputDir })
-  }
+  let config = {}
 
-  const config = {
-    inputDir,
-    outputDir,
-    basePath
+  if (action === 'build' || action === 'serve') {
+    config = configMerge({
+      sharedConfig,
+      serverConfig,
+      clientConfig,
+      devConfig,
+      inputDir,
+      outputDir,
+      basePath
+    })
   }
-
-  const shared = smarterMerge(
-    defaultSharedConfig,
-    sharedConfig
-  )
-  const server = applyConfig(
-    smarterMerge(
-      shared,
-      smarterMerge(
-        defaultServerConfig,
-        serverConfig
-      )
-    ),
-    config
-  )
-  const client = applyConfig(
-    smarterMerge(
-      shared,
-      smarterMerge(
-        defaultClientConfig,
-        clientConfig
-      )
-    ),
-    config
-  )
-  const dev = smarterMerge(
-    defaultDevConfig,
-    devConfig
-  )
 
   return actions[action]({
     inputDir,
     outputDir,
     basePath,
-    serverConfig: server,
-    clientConfig: client,
-    devConfig: dev,
-    port
+    serverConfig: config.server,
+    clientConfig: config.client,
+    devConfig: config.dev,
+    port,
+    extras
   })
 }
