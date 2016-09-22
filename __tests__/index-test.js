@@ -1,12 +1,12 @@
-const test = require('ava')
+const assert = require('assert')
 const proxyquire = require('proxyquire')
 const { join } = require('path')
 
-test(`
+it(`
   when action is "build", and no other options are pased,
   build is called with a serverConfig and clientConfig
   containing a default output.path
-`, (t) => {
+`, () => {
   let serverOutputPath = ''
   let clientOutputPath = ''
 
@@ -19,15 +19,15 @@ test(`
 
   brb({ action: 'build' })
 
-  t.is(join(process.cwd(), '/dist/'), serverOutputPath)
-  t.is(join(process.cwd(), '/dist/'), clientOutputPath)
+  assert(join(process.cwd(), '/dist/') === serverOutputPath)
+  assert(join(process.cwd(), '/dist/') === clientOutputPath)
 })
 
-test(`
+it(`
   when action is "build", and an absolute inputDir option is passed,
   build is called with a serverConfig and clientConfig
   containing it as the output.path
-`, (t) => {
+`, () => {
   let serverOutputPath = ''
   let clientOutputPath = ''
 
@@ -40,15 +40,15 @@ test(`
 
   brb({ action: 'build', outputDir: '/foobar/' })
 
-  t.is('/foobar/', serverOutputPath)
-  t.is('/foobar/', clientOutputPath)
+  assert('/foobar/' === serverOutputPath)
+  assert('/foobar/' === clientOutputPath)
 })
 
-test(`
+it(`
   when action is "build", and no other options are pased,
   build is called with a serverConfig and clientConfig
   containing a default context
-`, (t) => {
+`, () => {
   let serverContext = ''
   let clientContext = ''
 
@@ -61,15 +61,15 @@ test(`
 
   brb({ action: 'build' })
 
-  t.is(join(process.cwd(), '/source'), serverContext)
-  t.is(join(process.cwd(), '/source'), clientContext)
+  assert(join(process.cwd(), '/source') === serverContext)
+  assert(join(process.cwd(), '/source') === clientContext)
 })
 
-test(`
+it(`
   when action is "build", and an absolute outputDir option is passed,
   build is called with a serverConfig and clientConfig
   containing it as the context
-`, (t) => {
+`, () => {
   let serverContext = ''
   let clientContext = ''
 
@@ -82,15 +82,15 @@ test(`
 
   brb({ action: 'build', inputDir: '/foobaz/' })
 
-  t.is('/foobaz/', serverContext)
-  t.is('/foobaz/', clientContext)
+  assert('/foobaz/' === serverContext)
+  assert('/foobaz/' === clientContext)
 })
 
-test(`
+it(`
   when action is "build", and a basePath option is passed,
   build is called with a serverConfig and clientConfig
   containg it as output.publicPath
-`, (t) => {
+`, () => {
   let serverPublicPath = ''
   let clientPublicPath = ''
 
@@ -103,15 +103,15 @@ test(`
 
   brb({ action: 'build', basePath: '/foobaz/' })
 
-  t.is('/foobaz/', serverPublicPath)
-  t.is('/foobaz/', clientPublicPath)
+  assert('/foobaz/', serverPublicPath)
+  assert('/foobaz/', clientPublicPath)
 })
 
-test(`
+it(`
   when action is "build" and a sharedConfig.output.path option is passed,
   build is called with serverConfig and clientConfig
   still respecting the outputDir option
-`, (t) => {
+`, () => {
   let serverOutputPath = ''
   let clientOutputPath = ''
 
@@ -128,14 +128,14 @@ test(`
     sharedConfig: { output: { path: '/WOOT/' } }
   })
 
-  t.is('/foobar/', serverOutputPath)
-  t.is('/foobar/', clientOutputPath)
+  assert('/foobar/' === serverOutputPath)
+  assert('/foobar/' === clientOutputPath)
 })
 
-test(`
+it(`
   when action is "build" and a serverConfig.output.path option is passed,
   build is called with serverConfig still respecting the outputDir option
-`, (t) => {
+`, () => {
   let serverOutputPath = ''
 
   const brb = proxyquire('../', {
@@ -150,13 +150,13 @@ test(`
     serverConfig: { output: { path: '/WOOT/' } }
   })
 
-  t.is('/foobar/', serverOutputPath)
+  assert('/foobar/' === serverOutputPath)
 })
 
-test(`
+it(`
   when action is "build" and a serverConfig.output.path option is passed,
   build is called with clientConfig still respecting the outputDir option
-`, (t) => {
+`, () => {
   let clientOutputPath = ''
 
   const brb = proxyquire('../', {
@@ -171,14 +171,14 @@ test(`
     clientConfig: { output: { path: '/WOOT/' } }
   })
 
-  t.is('/foobar/', clientOutputPath)
+  assert('/foobar/' === clientOutputPath)
 })
 
-test(`
+it(`
   when action is "build" and a sharedConfig.context option is passed,
   build is called with serverConfig and clientConfig
   still respecting the inputDir option
-`, (t) => {
+`, () => {
   let serverContext = ''
   let clientContext = ''
 
@@ -195,14 +195,14 @@ test(`
     sharedConfig: { context: '/WOOT/' }
   })
 
-  t.is('/foobar/', serverContext)
-  t.is('/foobar/', clientContext)
+  assert('/foobar/' === serverContext)
+  assert('/foobar/' === clientContext)
 })
 
-test(`
+it(`
   when action is "build" and a serverConfig.context option is passed,
   build is called with serverConfig still respecting the inputDir option
-`, (t) => {
+`, () => {
   let serverContext = ''
 
   const brb = proxyquire('../', {
@@ -217,13 +217,13 @@ test(`
     serverConfig: { context: '/WOOT/' }
   })
 
-  t.is('/foobar/', serverContext)
+  assert('/foobar/' === serverContext)
 })
 
-test(`
+it(`
   when action is "build" and a clientConfig.context option is passed,
   build is called with clientConfig still respecting the inputDir option
-`, (t) => {
+`, () => {
   let clientContext = ''
 
   const brb = proxyquire('../', {
@@ -238,14 +238,14 @@ test(`
     clientConfig: { context: '/WOOT/' }
   })
 
-  t.is('/foobar/', clientContext)
+  assert('/foobar/' === clientContext)
 })
 
-test(`
+it(`
   when action is build and a sharedConfig option is passed containing loaders,
   build is called with a clientConfig and a serverConfig
   containing those loaders
-`, (t) => {
+`, () => {
   let clientLoaders = []
   let serverLoaders = []
 
@@ -261,24 +261,24 @@ test(`
     sharedConfig: {
       module: {
         loaders: [
-          { loader: 'my-special-loader', test: /.foo$/ },
-          { loader: 'my-other-special-loader', test: /.bar$/ }
+          { loader: 'my-special-loader', it: /.foo$/ },
+          { loader: 'my-other-special-loader', it: /.bar$/ }
         ]
       }
     }
   })
 
-  t.truthy(clientLoaders.find((l) => l.loader === 'my-special-loader'))
-  t.truthy(clientLoaders.find((l) => l.loader === 'my-other-special-loader'))
+  assert(clientLoaders.find((l) => l.loader === 'my-special-loader'))
+  assert(clientLoaders.find((l) => l.loader === 'my-other-special-loader'))
 
-  t.truthy(serverLoaders.find((l) => l.loader === 'my-special-loader'))
-  t.truthy(serverLoaders.find((l) => l.loader === 'my-other-special-loader'))
+  assert(serverLoaders.find((l) => l.loader === 'my-special-loader'))
+  assert(serverLoaders.find((l) => l.loader === 'my-other-special-loader'))
 })
 
-test(`
+it(`
   when action is build and a clientConfig option is passed containing loaders,
   build is called with a clientConfig containing those loaders
-`, (t) => {
+`, () => {
   let clientLoaders = []
   let serverLoaders = []
 
@@ -294,24 +294,24 @@ test(`
     clientConfig: {
       module: {
         loaders: [
-          { loader: 'my-special-loader', test: /.foo$/ },
-          { loader: 'my-other-special-loader', test: /.bar$/ }
+          { loader: 'my-special-loader', it: /.foo$/ },
+          { loader: 'my-other-special-loader', it: /.bar$/ }
         ]
       }
     }
   })
 
-  t.truthy(clientLoaders.find((l) => l.loader === 'my-special-loader'))
-  t.truthy(clientLoaders.find((l) => l.loader === 'my-other-special-loader'))
+  assert(clientLoaders.find((l) => l.loader === 'my-special-loader'))
+  assert(clientLoaders.find((l) => l.loader === 'my-other-special-loader'))
 
-  t.truthy(!serverLoaders.find((l) => l.loader === 'my-special-loader'))
-  t.truthy(!serverLoaders.find((l) => l.loader === 'my-other-special-loader'))
+  assert(!serverLoaders.find((l) => l.loader === 'my-special-loader'))
+  assert(!serverLoaders.find((l) => l.loader === 'my-other-special-loader'))
 })
 
-test(`
+it(`
   when action is build and a serverConfig option is passed containing loaders,
   build is called with a serverConfig containing those loaders
-`, (t) => {
+`, () => {
   let clientLoaders = []
   let serverLoaders = []
 
@@ -327,16 +327,16 @@ test(`
     serverConfig: {
       module: {
         loaders: [
-          { loader: 'my-special-loader', test: /.foo$/ },
-          { loader: 'my-other-special-loader', test: /.bar$/ }
+          { loader: 'my-special-loader', it: /.foo$/ },
+          { loader: 'my-other-special-loader', it: /.bar$/ }
         ]
       }
     }
   })
 
-  t.truthy(!clientLoaders.find((l) => l.loader === 'my-special-loader'))
-  t.truthy(!clientLoaders.find((l) => l.loader === 'my-other-special-loader'))
+  assert(!clientLoaders.find((l) => l.loader === 'my-special-loader'))
+  assert(!clientLoaders.find((l) => l.loader === 'my-other-special-loader'))
 
-  t.truthy(serverLoaders.find((l) => l.loader === 'my-special-loader'))
-  t.truthy(serverLoaders.find((l) => l.loader === 'my-other-special-loader'))
+  assert(serverLoaders.find((l) => l.loader === 'my-special-loader'))
+  assert(serverLoaders.find((l) => l.loader === 'my-other-special-loader'))
 })
