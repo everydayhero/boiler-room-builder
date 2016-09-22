@@ -1,8 +1,8 @@
-global.React = require('react');
-global.sinon = require('sinon');
-global.chai = require("chai");
-global.should = chai.should();
-global.assert = chai.assert;
-global.expect = chai.expect;
+global.React = require('react')
+global.sinon = require('sinon')
+global.chai = require('chai')
+global.should = global.chai.should()
+global.assert = global.chai.assert
+global.expect = global.chai.expect
 
-chai.use(require('sinon-chai'));
+global.chai.use(require('sinon-chai'))
