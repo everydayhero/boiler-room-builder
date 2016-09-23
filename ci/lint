@@ -3,4 +3,4 @@
 set -eu pipefail
 
 npm install
-node bin/index.js lint
+npm run lint
