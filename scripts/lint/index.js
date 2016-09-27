@@ -6,4 +6,23 @@ const args = [
   `${inputDir}/**/*.js`
 ].concat(process.argv.slice(2))
 
-spawn(process.execPath, args, { stdio: 'inherit' })
+const lint = spawn(
+  process.execPath,
+  args
+)
+const format = spawn(
+  process.execPath,
+  [require.resolve('snazzy/bin/cmd')],
+  { stdio: 'inherit' }
+)
+lint.stdout.pipe(format)
+
+lint.on('exit', (code, signal) => {
+  process.on('exit', () => {
+    if (signal) {
+      process.kill(process.pid, signal)
+    } else {
+      process.exit(code)
+    }
+  })
+})
