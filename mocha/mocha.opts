@@ -1,4 +1,0 @@
---recursive
---require node_modules/boiler-room-builder/mocha/setup.js
---compilers babel-core/register
---ui bdd
