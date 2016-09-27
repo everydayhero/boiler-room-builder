@@ -1,5 +1,5 @@
-const { describe, it } = require('mocha')
-const assert = require('assert')
+import { describe, it } from 'mocha'
+import assert from 'assert'
 
 describe('Running tests', () => {
   it('runs test', () => {
