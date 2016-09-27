@@ -7,8 +7,8 @@
     "brb": "bin/index.js"
   },
   "scripts": {
-    "test": "ava",
-    "lint": "node bin/index.js lint --inputDir='.'"
+    "test": "brb test --input-dir='./{lib,plugins,scripts}'",
+    "lint": "node bin/index.js lint --input-dir='.'"
   },
   "author": "Brad Parker <hi@bradparker.com>",
   "license": "ISC",
@@ -19,12 +19,9 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "boiler-room-runner": "^1.0.0-14",
-    "chai": "^3.5.0",
     "connect": "^3.4.1",
     "connect-logger": "0.0.1",
-    "cross-spawn": "^4.0.0",
     "css-loader": "^0.23.1",
-    "enzyme": "^2.4.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "json-loader": "^0.5.4",
@@ -37,11 +34,8 @@
     "resolve-url-loader": "^1.6.0",
     "sass-loader": "^4.0.0",
     "serve-static": "^1.11.1",
-    "snazzy": "^5.0.0",
     "standard": "^8.1.0",
     "standard-loader": "^5.0.0",
-    "sinon": "^1.17.6",
-    "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dashboard": "0.0.1",
@@ -50,11 +44,11 @@
     "webpack-node-externals": "^1.3.2",
     "yargs": "^4.8.0"
   },
-  "devDependencies": {
-    "ava": "^0.16.0",
-    "proxyquire": "^1.7.10"
-  },
+  "devDependencies": {},
   "standard": {
+    "globals": [
+      "it"
+    ],
     "ignore": [
       "node_modules"
     ]
