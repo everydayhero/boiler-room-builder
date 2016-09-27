@@ -3,4 +3,5 @@
 set -eu pipefail
 
 npm install
+npm link
 npm test
