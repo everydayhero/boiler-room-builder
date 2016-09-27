@@ -1,15 +1,13 @@
-const test = require('ava')
+const assert = require('assert')
 const StaticSitePlugin = require('../')
 
-test('#constructor takes an app module', (t) => {
+it('#constructor takes an app module', () => {
   const myApp = () => {}
   const staticSite = new StaticSitePlugin({ app: myApp })
-  t.is(staticSite.app, myApp)
+  assert.equal(staticSite.app, myApp)
 })
 
-test.cb('#apply passes assets from stats to the passed app function', (t) => {
-  t.plan(1)
-
+it('#apply passes assets from stats to the passed app function', (done) => {
   let passedAssets = []
 
   const myApp = ({ assets }) => {
@@ -41,11 +39,11 @@ test.cb('#apply passes assets from stats to the passed app function', (t) => {
   const mockCompiler = {
     plugin (_, callback) {
       callback(mockCompilation, () => {
-        t.deepEqual(
+        assert.deepEqual(
           passedAssets,
           ['/main-123.css', '/main-123.js']
         )
-        t.end()
+        done()
       })
     }
   }
@@ -55,9 +53,7 @@ test.cb('#apply passes assets from stats to the passed app function', (t) => {
   staticSite.apply(mockCompiler)
 })
 
-test.cb('#apply adds a <route>/index.html per staticRoute on the return value of `app`', (t) => {
-  t.plan(2)
-
+it('#apply adds a <route>/index.html per staticRoute on the return value of `app`', (done) => {
   const myApp = () => {
     const runner = (route) => (
       Promise.resolve({ result: `ROUTE: ${route}` })
@@ -83,15 +79,15 @@ test.cb('#apply adds a <route>/index.html per staticRoute on the return value of
   const mockCompiler = {
     plugin (_, callback) {
       callback(mockCompilation, () => {
-        t.is(
+        assert.equal(
           mockCompilation.assets['index.html'].source(),
           'ROUTE: /'
         )
-        t.is(
+        assert.equal(
           mockCompilation.assets['foo/index.html'].source(),
           'ROUTE: /foo'
         )
-        t.end()
+        done()
       })
     }
   }
