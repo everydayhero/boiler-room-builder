@@ -3,7 +3,10 @@ const { spawn } = require('child_process')
 const { inputDir = './source' } = require('yargs').argv
 
 const defaultOpts = [
-  `--compilers`,
+  '--recursive',
+  '--require',
+  join(__dirname, './setup.js'),
+  '--compilers',
   `js:${join(__dirname, './compiler.js')}`
 ]
 
@@ -15,4 +18,14 @@ const args = [
   process.argv.slice(2)
 ).filter(Boolean)
 
-spawn(process.execPath, args, { stdio: 'inherit' })
+const test = spawn(process.execPath, args, { stdio: 'inherit' })
+
+test.on('exit', (code, signal) => {
+  process.on('exit', () => {
+    if (signal) {
+      process.kill(process.pid, signal)
+    } else {
+      process.exit(code)
+    }
+  })
+})
