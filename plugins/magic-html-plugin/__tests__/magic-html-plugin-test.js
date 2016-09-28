@@ -1,27 +1,24 @@
-const test = require('ava')
+const assert = require('assert')
 const MagicHTMLPlugin = require('../')
 const defaultRenderDocument = require('../../../lib/default-render-document')
 
-test('#constructor takes a render function option', (t) => {
+it('#constructor takes a render function option', () => {
   const mahRender = () => 'Foo'
   const magicHTML = new MagicHTMLPlugin({ render: mahRender })
-  t.is(magicHTML.render, mahRender)
+  assert.equal(magicHTML.render, mahRender)
 })
 
-test('#contructor defaults the render option to defaultRenderDocument', (t) => {
+it('#contructor defaults the render option to defaultRenderDocument', () => {
   const magicHTML = new MagicHTMLPlugin()
-  t.is(magicHTML.render, defaultRenderDocument)
+  assert.equal(magicHTML.render, defaultRenderDocument)
 })
 
-test('#apply will add the result of calling #render as an asset called `index.html`', (t) => {
-  t.plan(1)
-
+it('#apply will add the result of calling #render as an asset called `index.html`', (done) => {
   const mahRender = () => 'Foo'
   const magicHTML = new MagicHTMLPlugin({ render: mahRender })
 
   const mockCompilation = {
     assets: {},
-
     outputOptions: { publicPath: '/' },
     getStats () {
       return {
@@ -33,10 +30,11 @@ test('#apply will add the result of calling #render as an asset called `index.ht
   const mockCompiler = {
     plugin (_, callback) {
       callback(mockCompilation, () => {
-        t.is(
+        assert.equal(
           mockCompilation.assets['index.html'].source(),
           'Foo'
         )
+        done()
       })
     }
   }
@@ -44,9 +42,7 @@ test('#apply will add the result of calling #render as an asset called `index.ht
   magicHTML.apply(mockCompiler)
 })
 
-test('#apply will pass assets from chunks the provided render method', (t) => {
-  t.plan(1)
-
+it('#apply will pass assets from chunks the provided render method', (done) => {
   let assetsPassed = []
   const mahRender = ({ assets }) => {
     assetsPassed = assets
@@ -74,10 +70,11 @@ test('#apply will pass assets from chunks the provided render method', (t) => {
   const mockCompiler = {
     plugin (_, callback) {
       callback(mockCompilation, () => {
-        t.deepEqual(
+        assert.deepEqual(
           assetsPassed,
           ['/main-123.css', '/main-123.js']
         )
+        done()
       })
     }
   }
