@@ -34,7 +34,7 @@ const loaders = [
     test: /\.scss$/,
     loader: cssExtractor.extract(
       'style',
-      'css!sass!postcss'
+      'css!postcss!resolve-url!sass?sourceMap'
     )
   },
   {
