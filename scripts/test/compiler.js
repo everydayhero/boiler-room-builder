@@ -1,14 +1,17 @@
-require('babel-register')({
-  presets: [
-    'es2015',
-    'stage-0',
-    'react'
-  ]
-})
+const extensions = require('../../config/extensions')
+const opts = require('../../config/babel')
+
+require('babel-register')(opts)
 
 function noop () { return {} }
 
-require.extensions['.sass'] = noop
-require.extensions['.scss'] = noop
-require.extensions['.css'] = noop
-require.extensions['.svg'] = noop
+[].concat(
+  extensions['css'],
+  extensions['sass'],
+  extensions['audio'],
+  extensions['fonts'],
+  extensions['images'],
+  extensions['video']
+).forEach((ext) => {
+  require.extensions[ext] = noop
+})

@@ -1,20 +1,20 @@
-const { keys } = Object
+const extentions = require('./extensions')
+const babelConfig = require('./babel')
 
-const fileLoaderTests = {
-  eot: '\\.eot$',
-  gif: '\\.gif$',
-  jpg: '\\.(jpg|jpeg)$',
-  png: '\\.png$',
-  svg: '\\.svg$',
-  ttf: '\\.ttf$',
-  woff: '\\.woff'
-}
-
-const fileLoaderTest = (
-  new RegExp(`(${keys(fileLoaderTests).map(
-    (test) => fileLoaderTests[test]
-  ).join('|')})`)
+const extensionTest = (exts, omitable) => (
+  new RegExp(`.(${exts.join('|')})$`)
 )
+
+const fileLoaderTest = extensionTest(
+  [].concat(
+    extentions['audio'],
+    extentions['fonts'],
+    extentions['images'],
+    extentions['video']
+  )
+)
+
+const babelQuery = `presets[]=${babelConfig.presets.join('&presets[]=')}`
 
 const loaders = [
   {
@@ -22,25 +22,13 @@ const loaders = [
     loader: 'json'
   },
   {
-    test: /\.js?$/,
-    loader: 'babel',
-    exclude: /node_modules/,
-    query: {
-      presets: [
-        'es2015',
-        'stage-0',
-        'react'
-      ]
-    }
+    test: /\.(js|jsx)?$/,
+    loader: `babel?${babelQuery}!standard`,
+    exclude: /node_modules/
   },
   {
     test: fileLoaderTest,
     loader: 'file'
-  },
-  {
-    test: /\.jsx?$/,
-    loader: 'standard',
-    exclude: /node_modules/
   }
 ]
 
