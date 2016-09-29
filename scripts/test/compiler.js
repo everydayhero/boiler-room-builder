@@ -1,10 +1,7 @@
 const extensions = require('../../config/extensions')
 const opts = require('../../config/babel')
 
-require('babel-register')(opts)
-
 function noop () { return {} }
-
 [].concat(
   extensions['css'],
   extensions['sass'],
@@ -13,5 +10,7 @@ function noop () { return {} }
   extensions['images'],
   extensions['video']
 ).forEach((ext) => {
-  require.extensions[ext] = noop
+  require.extensions[`.${ext}`] = noop
 })
+
+require('babel-register')(opts)
