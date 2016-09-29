@@ -13,16 +13,14 @@ const lint = spawn(
 const format = spawn(
   process.execPath,
   [require.resolve('snazzy/bin/cmd')],
-  { stdio: 'inherit' }
+  { stdio: ['pipe', process.stdout, process.stderr] }
 )
-lint.stdout.pipe(format)
+lint.stdout.pipe(format.stdin)
 
 lint.on('exit', (code, signal) => {
-  process.on('exit', () => {
-    if (signal) {
-      process.kill(process.pid, signal)
-    } else {
-      process.exit(code)
-    }
-  })
+  if (signal) {
+    process.kill(process.pid, signal)
+  } else {
+    process.exit(code)
+  }
 })
