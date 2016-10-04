@@ -6,11 +6,13 @@ const defaultOpts = [
   '--recursive',
   '--require',
   join(__dirname, './setup.js'),
-  '--compilers',
-  `js:${join(__dirname, './compiler.js')}`
+  '--require',
+  join(__dirname, './compiler.js')
 ]
 
 const args = [
+  require.resolve('istanbul/lib/cli'),
+  'cover',
   require.resolve('mocha/bin/_mocha'),
   `${inputDir}/**/__tests__/*-test.js`
 ].concat(
