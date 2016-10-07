@@ -32,8 +32,6 @@ Refer to the [basic example](https://github.com/everydayhero/boiler-room-builder
 
 #### Server.js
 
-If you use [Boiler room runner](https://github.com/everydayhero/boiler-room-runner#in-your-serverjs-file) to bootstrap your app, this will be simpler :simple_smile:).
-
 Your server.js file must export a function which takes some compilation info and returns a function.
 
 The returned function will take a route return a Promise which may:
@@ -55,6 +53,8 @@ export default function ({ assets = [] }) {
 ```
 
 Why return a function like this? The exported function is passed into a Promise chain, which allows you to perform some async setup for your app before we try to call it to render any html.
+
+If you use [Boiler Room Runner (BRR)](https://github.com/everydayhero/boiler-room-runner#in-your-serverjs-file) to bootstrap your app, this will be simpler :simple_smile:.
 
 #### Client.js
 
