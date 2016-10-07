@@ -2,7 +2,7 @@
 
 [![Build status](https://badge.buildkite.com/3b53417ee3fb24b145098c129e6b31cc2ddc42d39d98ab0b52.svg?style=flat-square)](https://buildkite.com/everyday-hero/boiler-room-builder-tests)
 
-You write the React app, BRB creates the build configuration. With little effort you will be able to `build`, `test`, `lint` and `serve` like a pro.
+You write the React app, Boiler Room Builder (BRB) handles the build configuration. With little effort you will be able to `build`, `test`, `lint` and `serve` like a pro.
 
 ## Getting started
 
