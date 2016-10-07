@@ -60,7 +60,7 @@ You can put pretty much anything in your client file, BRB won't try to require a
 
 ### BRR's Purpose in BRB
 
-Though BRR is not strictly necessary in any BRB project, BRR is included to provide a default document, in case you don’t provide your own exported `renderDocument` in `server.js` .  
+Though BRR is not strictly necessary in any BRB project, BRR is included to provide a default document, in case you don’t provide your own exported `renderDocument` in `server.js`.
 
 For example:
 [`examples/basic/source/server.js`](https://github.com/everydayhero/boiler-room-builder/blob/master/examples/basic/source/server.js) exports its own `renderDocument` , while [`examples/runner/source/server.js`](https://github.com/everydayhero/boiler-room-builder/blob/master/examples/runner/source/server.js) does not, and instead uses the default provided by BRR.
