@@ -41,15 +41,13 @@ The returned function will take a route return a Promise which may:
 * Reject with an error
 
 ```
-export default function ({ assets = [] }) {
-  return function (route = '/') {
-    return Promise.resolve({
+export default ({ assets = [] }) =>
+  (route = '/') =>
+    Promise.resolve({
       result: '<html />',
       // OR
       redirect: { pathname: '/another-location' }
     })
-  }
-}
 ```
 
 Why return a function like this? The exported function is passed into a Promise chain, which allows you to perform some async setup for your app before we try to call it to render any html.
