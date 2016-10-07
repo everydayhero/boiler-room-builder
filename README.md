@@ -6,7 +6,7 @@ You write the React app, Boiler Room Builder (BRB) handles the build configurati
 
 ## Getting started
 
-Add builder as a dependency to your project:
+Add BRB as a dependency to your project:
 `npm install boiler-room-builder --save-dev`
 
 ### Add the scripts to your `package.json`
@@ -28,7 +28,7 @@ Add builder as a dependency to your project:
 
 ### Create your `source/client.js` and `source/server.js` files
 
-Refer to the [basic example](https://github.com/everydayhero/boiler-room-builder/tree/master/examples/basic), to see what a boiler-room-builder setup looks like without any external libraries.
+Refer to the [basic example](https://github.com/everydayhero/boiler-room-builder/tree/master/examples/basic), to see what a BRB setup looks like without any external libraries.
 
 #### Server.js
 
@@ -58,9 +58,9 @@ Why return a function like this? The exported function is passed into a Promise 
 
 #### Client.js
 
-You can put pretty much anything in your client file, builder wont try to require and run it. It is however recommended that you use [Boiler Room Runner](https://github.com/everydayhero/boiler-room-runner#in-your-clientjs-file). It's got what you need.
+You can put pretty much anything in your client file, BRB won't try to require and run it. It is however recommended that you use [Boiler Room Runner](https://github.com/everydayhero/boiler-room-runner#in-your-clientjs-file). It's got what you need.
 
-### Boiler Room Runner's Purpose in Builder
+### BRR's Purpose in BRB
 
 Though BRR is not strictly necessary in any BRB project, BRR is included to provide a default document, in case you don’t provide your own exported `renderDocument` in `server.js` .  
 
@@ -105,7 +105,7 @@ This option should be changed whenever your app is not being served directly fro
   # App is now accessible from http://localhost:8080/my-base-path/
   ```
 
-### Use the below only if you need to modify boiler room builder's default webpack configs
+### Use the below only if you need to modify BRB's default webpack configs
 
 #### `--config`
 
@@ -127,12 +127,12 @@ npm run test
 npm run test:watch # this is to watch your tests
 ```
 
-Boiler-room-builder makes it easy to have your application tested using mocha.
+BRB makes it easy to have your application tested using mocha.
 By default it looks for your tests using the pattern `source/**/*-test.js`. If your source code is not under the `source` directory use the `--input-dir` param as described under the heading "Options".
 
 ## Lint your application
 
-Boiler-room-builder makes it easy lint your application using StandardJS
+BRB makes it easy lint your application using StandardJS
 If you want to manually run the linter (for example as part of a buildkite pipeline) or to use the `--fix` option run one of the commands described below.
 
 ```sh
