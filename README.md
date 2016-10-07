@@ -1,14 +1,13 @@
 # Boiler Room Builder
 
-[![Build status](https://badge.buildkite.com/35edf858022bf6c8ec20dc8a3433348f4a268d772991e2c913.svg)](https://buildkite.com/everyday-hero/boiler-room-runner-tests)
+[![Build status](https://badge.buildkite.com/3b53417ee3fb24b145098c129e6b31cc2ddc42d39d98ab0b52.svg?style=flat-square)](https://buildkite.com/everyday-hero/boiler-room-builder-tests)
 
-A tool-chain for universal react apps
+You write the React app, BRB creates the build configuration. With little effort you will be able to `build`, `test`, `lint` and `serve` like a pro.
 
 ## Getting started
 
-```
-$ npm i boiler-room-builder --save-dev
-```
+Add builder as a dependency to your project:
+`npm install boiler-room-builder --save-dev`
 
 ### Add the scripts to your `package.json`
 
@@ -29,15 +28,16 @@ $ npm i boiler-room-builder --save-dev
 
 ### Create your `source/client.js` and `source/server.js` files
 
-Refer to the [basic example](https://github.com/everydayhero/boiler-room-builder/tree/master/examples/basic), to see what a boiler-room-builder setup looks like without any external libs.
+Refer to the [basic example](https://github.com/everydayhero/boiler-room-builder/tree/master/examples/basic), to see what a boiler-room-builder setup looks like without any external libraries.
 
-**Server.js**
+#### Server.js
 
-If you use [Boiler room runner](https://github.com/everydayhero/boiler-room-runner#in-your-serverjs-file) to bootstrap your app, this will be simpler :).
+If you use [Boiler room runner](https://github.com/everydayhero/boiler-room-runner#in-your-serverjs-file) to bootstrap your app, this will be simpler :simple_smile:).
 
 Your server.js file must export a function which takes some compilation info and returns a function.
 
 The returned function will take a route return a Promise which may:
+
 * Resolve to the rendered content for that route under a `result` key _or_
 * Resolve to a location to redirect to under a `redirect` key _or_
 * Reject with an error
@@ -56,9 +56,17 @@ export default function ({ assets = [] }) {
 
 Why return a function like this? The exported function is passed into a Promise chain, which allows you to perform some async setup for your app before we try to call it to render any html.
 
-**Client.js**
+#### Client.js
 
-You can put pretty much anything in your client file, builder wont try to require and run it. It is however recommended that you use [Boiler room runner](https://github.com/everydayhero/boiler-room-runner#in-your-clientjs-file). It's got what you need.
+You can put pretty much anything in your client file, builder wont try to require and run it. It is however recommended that you use [Boiler Room Runner](https://github.com/everydayhero/boiler-room-runner#in-your-clientjs-file). It's got what you need.
+
+### Boiler Room Runner's Purpose in Builder
+
+Though BRR is not strictly necessary in any BRB project, BRR is included to provide a default document, in case you don’t provide your own exported `renderDocument` in `server.js` .  
+
+For example:
+[`examples/basic/source/server.js`](https://github.com/everydayhero/boiler-room-builder/blob/master/examples/basic/source/server.js) exports its own `renderDocument` , while [`examples/runner/source/server.js`](https://github.com/everydayhero/boiler-room-builder/blob/master/examples/runner/source/server.js) does not, and instead uses the default provided by BRR.
+
 
 ### Start your app
 
