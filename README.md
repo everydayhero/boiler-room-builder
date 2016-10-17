@@ -116,20 +116,30 @@ Relative path to a webpack config specific to the server bundle.
 
 ## Test your application
 
+BRB makes it easy to have your application tested using mocha.
+
+By default it looks for your tests using the pattern `source/**/*-test.js`. If your source code is not under the `source` directory use the `--input-dir` param as described under the heading "Options".
+
 ```sh
-npm run test
-npm run test -- --watch # this is to watch your tests
+$ npm run test
 ```
 
-BRB makes it easy to have your application tested using mocha.
-By default it looks for your tests using the pattern `source/**/*-test.js`. If your source code is not under the `source` directory use the `--input-dir` param as described under the heading "Options".
+Your tests can be run in watch mode. When in watch mode changing a test file will re-run all your tests.
+
+```sh
+$ npm run test -- --watch
+```
 
 ## Lint your application
 
-BRB makes it easy lint your application using StandardJS
-If you want to manually run the linter (for example as part of a buildkite pipeline) or to use the `--fix` option run one of the commands described below.
+BRB makes it easy to lint your application using StandardJS.
 
 ```sh
-npm run lint
-npm run lint -- --fix # this is to autofix your lint failures
+$ npm run lint
+```
+
+Some lint failures can be fixed automatically. To correct them, run the following.
+
+```sh
+$ npm run lint -- --fix
 ```
