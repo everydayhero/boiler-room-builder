@@ -17,11 +17,7 @@ Add BRB as a dependency to your project:
     "start": "brb serve",
     "build": "brb build",
     "lint": "brb lint",
-    "lint:fix": "brb lint --fix",
-    "lint:watch": "brb lint --watch",
     "test": "brb test",
-    "test:debug": "brb test debug",
-    "test:watch": "brb test --watch",
   }
 // ...
 ```
@@ -122,7 +118,7 @@ Relative path to a webpack config specific to the server bundle.
 
 ```sh
 npm run test
-npm run test:watch # this is to watch your tests
+npm run test -- --watch # this is to watch your tests
 ```
 
 BRB makes it easy to have your application tested using mocha.
@@ -135,5 +131,5 @@ If you want to manually run the linter (for example as part of a buildkite pipel
 
 ```sh
 npm run lint
-npm run lint:fix # this is to autofix your lint failures
+npm run lint -- --fix # this is to autofix your lint failures
 ```
