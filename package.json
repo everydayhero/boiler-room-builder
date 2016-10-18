@@ -48,8 +48,8 @@
   },
   "devDependencies": {},
   "standard": {
-    "globals": [
-      "it"
+    "env": [
+      "mocha"
     ],
     "ignore": [
       "node_modules"
