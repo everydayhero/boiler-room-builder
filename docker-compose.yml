@@ -12,3 +12,6 @@ build:
     - GITHUB_RELEASE_ACCESS_TOKEN
     - DOCKER_HUB_TRIGGER_TOKEN
     - SSH_AUTH_SOCK=/ssh-agent
+    - NPM_USER
+    - NPM_PASS
+    - NPM_EMAIL

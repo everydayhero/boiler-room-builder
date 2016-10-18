@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euo pipefail
+
+echo -e "$NPM_USER\n$NPM_PASS\n$NPM_EMAIL" | npm login
+npm publish

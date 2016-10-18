@@ -143,3 +143,13 @@ Some lint failures can be fixed automatically. To correct them, run the followin
 ```sh
 $ npm run lint -- --fix
 ```
+
+## Publishing new versions to NPM
+
+Once your changes are merged use a single version bump commit to trigger publishing to npm. The easiest way is to use the [npm version](https://docs.npmjs.com/cli/version) command, for example:
+
+`npm version [major | minor | patch]`
+
+Then push to `master` with `git push origin master --follow-tags`.
+
+Make sure you bump the version as per [semver](http://semver.org/).
