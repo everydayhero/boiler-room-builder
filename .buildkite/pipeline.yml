@@ -12,3 +12,11 @@ steps:
     command: docker-compose run build ci/test
     agents:
       queue: native
+
+  - wait
+
+  - name: ":package: Ship It"
+    command: "ci/only-for-version-releases docker-compose run build ci/deploy"
+    branches: "master"
+    agents:
+      queue: native
