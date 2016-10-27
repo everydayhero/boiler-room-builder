@@ -4,7 +4,9 @@ const entry = {
   server: './server.js'
 }
 
-const externals = [nodeExternals()]
+const externals = [nodeExternals({
+  whitelist: [/\.(?!(?:jsx?|json)$).{1,5}$/i]
+})]
 
 const loaders = [
   {
