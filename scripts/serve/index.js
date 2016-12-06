@@ -10,7 +10,8 @@ const {
   serverConfig: serverConfigPath,
   clientConfig: clientConfigPath,
   devConfig: devConfigPath,
-  port = 8080
+  port = 8080,
+  outputToBase = false
 } = require('yargs').argv
 
 const client = clientConfigPath
@@ -38,7 +39,8 @@ const {
   client,
   server,
   shared,
-  dev
+  dev,
+  outputToBase
 })
 
 serve({
