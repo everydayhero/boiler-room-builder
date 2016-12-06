@@ -57,6 +57,7 @@ module.exports = {
     filename: bundleName('js')
   },
   module: { loaders },
+  devtool: PROD ? 'source-map' : 'eval-source-map',
   plugins,
   postcss () { return [autoprefixer] }
 }
