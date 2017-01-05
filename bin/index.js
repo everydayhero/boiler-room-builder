@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-const { spawn } = require('child_process')
+const kexec = require('kexec')
 const { join } = require('path')
 
 const isNodeArg = (arg) => (
@@ -23,19 +23,4 @@ process.argv.slice(3).forEach((arg) => {
   }
 })
 
-const proc = spawn(
-  process.execPath,
-  args,
-  { stdio: 'inherit' }
-)
-
-proc.on('exit', (code, signal) => {
-  process.on('exit', () => {
-    if (signal) {
-      process.kill(process.pid, signal)
-    } else {
-      process.exit(code)
-    }
-  })
-})
-
+kexec(process.execPath, args)
