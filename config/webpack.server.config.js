@@ -8,7 +8,7 @@ const externals = [nodeExternals({
   whitelist: [/\.(?!(?:jsx?|json)$).{1,5}$/i]
 })]
 
-const loaders = [
+const rules = [
   {
     test: /\.(scss|sass|css)$/,
     loader: 'null'
@@ -23,5 +23,5 @@ module.exports = {
     libraryTarget: 'commonjs',
     filename: 'server.js'
   },
-  module: { loaders }
+  module: { rules }
 }
