@@ -1,4 +1,4 @@
-const extentions = require('./extensions')
+const extensions = require('./extensions')
 const babelConfig = require('./babel')
 
 const extensionTest = (exts, omitable) => (
@@ -7,28 +7,28 @@ const extensionTest = (exts, omitable) => (
 
 const fileLoaderTest = extensionTest(
   [].concat(
-    extentions['audio'],
-    extentions['fonts'],
-    extentions['images'],
-    extentions['video']
+    extensions['audio'],
+    extensions['fonts'],
+    extensions['images'],
+    extensions['video']
   )
 )
 
-const babelQuery = `presets[]=${babelConfig.presets.join('&presets[]=')}`
-
-const loaders = [
-  {
-    test: /\.json$/,
-    loader: 'json'
-  },
+const rules = [
   {
     test: /\.(js|jsx)?$/,
-    loader: `babel?${babelQuery}!standard`,
+    use: [
+      {
+        loader: 'babel-loader',
+        options: babelConfig
+      },
+      'standard-loader'
+    ],
     exclude: /node_modules/
   },
   {
     test: fileLoaderTest,
-    loader: 'file'
+    use: 'file-loader'
   }
 ]
 
@@ -36,6 +36,6 @@ const plugins = []
 
 module.exports = {
   stats: { children: false },
-  module: { loaders },
+  module: { rules },
   plugins
 }
