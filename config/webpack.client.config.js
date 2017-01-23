@@ -15,19 +15,22 @@ const cssExtractor = new ExtractTextPlugin({
   allChunks: true
 })
 
+// Required temporarily until extract-text and postcss support options key right
+const loaderOptions = new webpack.LoaderOptionsPlugin({
+  options: {
+    postcss: [autoprefixer]
+  }
+})
+
 const uglify = new webpack.optimize.UglifyJsPlugin({
   sourceMap: true
 })
 const define = new webpack.DefinePlugin({
   'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`
 })
-const postCSSOptions = {
-  plugins: () => {
-    return [autoprefixer]
-  }
-}
 
 const plugins = [
+  loaderOptions,
   cssExtractor,
   define
 ].concat(
@@ -46,15 +49,14 @@ const rules = [
           loader: 'css-loader'
         },
         {
-          loader: 'postcss-loader',
-          options: postCSSOptions
+          loader: 'postcss-loader'
         },
         {
           loader: 'resolve-url-loader'
         },
         {
           loader: 'sass-loader',
-          query: {
+          options: {
             sourceMap: true
           }
         }
@@ -70,8 +72,7 @@ const rules = [
           loader: 'css-loader'
         },
         {
-          loader: 'postcss-loader',
-          options: postCSSOptions
+          loader: 'postcss-loader'
         }
       ]
     })
