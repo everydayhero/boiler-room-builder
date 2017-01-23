@@ -11,11 +11,11 @@ const externals = [nodeExternals({
 const rules = [
   {
     test: /\.scss$/,
-    use: 'null'
+    use: 'null-loader'
   },
   {
     test: /\.css$/,
-    use: 'null'
+    use: 'null-loader'
   }
 ]
 
