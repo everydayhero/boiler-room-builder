@@ -11,7 +11,7 @@ const bundleName = (ext, name) => (
 )
 
 const cssExtractor = new ExtractTextPlugin({
-  filename: bundleName('css', 'main'),
+  filename: bundleName('css'),
   allChunks: true
 })
 
@@ -21,16 +21,15 @@ const uglify = new webpack.optimize.UglifyJsPlugin({
 const define = new webpack.DefinePlugin({
   'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`
 })
-const loaderOptions = new webpack.LoaderOptionsPlugin({
-  options: {
-    postcss: [autoprefixer]
+const postCSSOptions = {
+  plugins: () => {
+    return [autoprefixer]
   }
-})
+}
 
 const plugins = [
   cssExtractor,
-  define,
-  loaderOptions
+  define
 ].concat(
   !PROD ? [] : [
     uglify
@@ -47,14 +46,15 @@ const rules = [
           loader: 'css-loader'
         },
         {
-          loader: 'postcss-loader'
+          loader: 'postcss-loader',
+          options: postCSSOptions
         },
         {
           loader: 'resolve-url-loader'
         },
         {
           loader: 'sass-loader',
-          options: {
+          query: {
             sourceMap: true
           }
         }
@@ -70,7 +70,8 @@ const rules = [
           loader: 'css-loader'
         },
         {
-          loader: 'postcss-loader'
+          loader: 'postcss-loader',
+          options: postCSSOptions
         }
       ]
     })
