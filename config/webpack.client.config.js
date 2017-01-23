@@ -39,7 +39,7 @@ const plugins = [
 const rules = [
   {
     test: /\.scss$/,
-    use: cssExtractor.extract({
+    loader: cssExtractor.extract({
       fallbackLoader: 'style-loader',
       loader: [
         {
@@ -63,7 +63,7 @@ const rules = [
   },
   {
     test: /\.css$/,
-    use: cssExtractor.extract({
+    loader: cssExtractor.extract({
       fallbackLoader: 'style-loader',
       loader: [
         {
