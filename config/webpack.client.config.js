@@ -31,7 +31,7 @@ const plugins = [
 
 const loaders = [
   {
-    test: /\.scss$/,
+    test: /\.(scss|sass)$/,
     loader: cssExtractor.extract(
       'style',
       'css!postcss!resolve-url!sass?sourceMap'
