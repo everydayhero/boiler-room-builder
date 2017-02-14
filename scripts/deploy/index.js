@@ -1,7 +1,7 @@
 const { inputDir = './source' } = require('yargs').argv
 const program = require('commander')
 const deployS3 = require('../../lib/deploy/s3')
-const deployGhp = require('../../lib/deploy/ghp')
+const deployGithubPages = require('../../lib/deploy/github-pages')
 
 const args = [
   require.resolve('standard/bin/cmd'),
@@ -21,7 +21,7 @@ if (program.target === 's3') {
     prefix: program.prefix
   })
 } else if (program.target === 'gh-pages') {
-  deployGhp(program.dir)
+  deployGithubPages(program.dir)
 } else {
   console.log('Invalid target')
   process.exit(9)
