@@ -160,6 +160,31 @@ This can take the following flags:
 - `--prefix` (optional): Object name (S3 prefix) to target within the bucket
 - `--dir` (optional): Directory of files to upload (defaults to `dist`)
 
+The S3 publisher uses the AWS SDK under the hood, and therefore requires the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables to be set.
+
+An example of a local publish might look like this:
+
+**package.json:**
+
+```json
+{
+  "scripts": {
+    "build": "brb build",
+    "deploy": "yarn build && brb deploy --target s3 --bucket mybucket.com --prefix mysite.mybucket.com"
+  }
+}
+```
+
+**shell:**
+
+```sh
+$ export AWS_ACCESS_KEY_ID=MYSPECIALKEY
+$ export AWS_SECRET_ACCESS_KEY=MYSPECIALSECRET
+$ yarn deploy
+```
+
+CI pipeline based deployment works very similarly. Instead of locally exporting, the AWS credentials will need to be specified in the pipeline configuration. Assuming a similar `package.json` set up is in use, `yarn deploy` would simply need to be a step in the build pipeline.
+
 ### GH Pages
 
 ```sh
