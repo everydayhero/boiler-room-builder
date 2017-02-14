@@ -156,9 +156,9 @@ $ brb deploy --target s3
 
 This can take the following flags:
 
-- `--bucket` or `-b` (required): The bucket name to deploy to
-- `--prefix` or `-p` (optional): Object name (S3 prefix) to target within the bucket
-- `--dir` or `-d` (optional): Directory of files to upload (defaults to `dist`)
+- `--bucket` (required): The bucket name to deploy to
+- `--prefix` (optional): Object name (S3 prefix) to target within the bucket
+- `--dir` (optional): Directory of files to upload (defaults to `dist`)
 
 ### GH Pages
 
@@ -168,7 +168,7 @@ $ brb deploy --target gh-pages
 
 This can take the following flags:
 
-- `--dir` or `-d` (optional): Directory of files to upload (defaults to `dist`)
+- `--dir` (optional): Directory of files to upload (defaults to `dist`)
 
 ## Publishing new versions to NPM
 
