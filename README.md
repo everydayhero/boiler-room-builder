@@ -144,6 +144,32 @@ Some lint failures can be fixed automatically. To correct them, run the followin
 $ npm run lint -- --fix
 ```
 
+## Deploy your application
+
+If you're producing a static site, BRB has a couple of deployment scripts to help get your site live (or on staging):
+
+### S3
+
+```sh
+$ brb deploy --target s3
+```
+
+This can take the following flags:
+
+- `--bucket` (required): The bucket name to deploy to
+- `--prefix` (optional): Object name (S3 prefix) to target within the bucket
+- `--dir` (optional): Directory of files to upload (defaults to `dist`)
+
+### GH Pages
+
+```sh
+$ brb deploy --target gh-pages
+```
+
+This can take the following flags:
+
+- `--dir` (optional): Directory of files to upload (defaults to `dist`)
+
 ## Publishing new versions to NPM
 
 Once your changes are merged use a single version bump commit to trigger publishing to npm. The easiest way is to use the [npm version](https://docs.npmjs.com/cli/version) command, for example:
