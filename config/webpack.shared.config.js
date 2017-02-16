@@ -1,18 +1,16 @@
 const extensions = require('./extensions')
 const babelConfig = require('./babel')
 
-const extensionTest = (exts, omitable) => (
-  new RegExp(`.(${exts.join('|')})$`)
+const extensionsFlat = [].concat(
+  extensions['audio'],
+  extensions['fonts'],
+  extensions['images'],
+  extensions['video']
 )
-
-const fileLoaderTest = extensionTest(
-  [].concat(
-    extensions['audio'],
-    extensions['fonts'],
-    extensions['images'],
-    extensions['video']
-  )
-)
+const fileLoaders = extensionsFlat.map((ext) => ({
+  test: new RegExp(`\\.${ext}$`),
+  loader: 'file-loader'
+}))
 
 const rules = [
   {
@@ -25,12 +23,8 @@ const rules = [
       'standard-loader'
     ],
     exclude: /node_modules/
-  },
-  {
-    test: fileLoaderTest,
-    use: 'file-loader'
   }
-]
+].concat(fileLoaders)
 
 const plugins = []
 
