@@ -159,6 +159,7 @@ This can take the following flags:
 - `--bucket` (required): The bucket name to deploy to
 - `--prefix` (optional): Object name (S3 prefix) to target within the bucket
 - `--dir` (optional): Directory of files to upload (defaults to `dist`)
+- `--deleteRemoved` (optional): Whether or not to remove files not present in local `dir` (defaults to `true`)
 
 The S3 publisher uses the AWS SDK under the hood, and therefore requires the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables to be set.
 
