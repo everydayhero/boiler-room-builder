@@ -22,7 +22,7 @@ const rules = [
       },
       'standard-loader'
     ],
-    exclude: /node_modules/
+    exclude: /node_modules|dist/
   }
 ].concat(fileLoaders)
 
