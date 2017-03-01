@@ -81,4 +81,3 @@ it('#apply will pass assets from chunks the provided render method', (done) => {
 
   magicHTML.apply(mockCompiler)
 })
-
