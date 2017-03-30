@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "brb serve",
-    "build": "brb build",
+    "start": "brb serve --client-config=./client.config.js",
+    "build": "brb build --client-config=./client.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Brad Parker <hi@bradparker.com>",
