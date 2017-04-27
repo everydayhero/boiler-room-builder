@@ -41,29 +41,6 @@ const plugins = [
 
 const rules = [
   {
-    test: /\.(scss|sass)$/,
-    loader: cssExtractor.extract({
-      fallbackLoader: 'style-loader',
-      loader: [
-        {
-          loader: 'css-loader'
-        },
-        {
-          loader: 'postcss-loader'
-        },
-        {
-          loader: 'resolve-url-loader'
-        },
-        {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: true
-          }
-        }
-      ]
-    })
-  },
-  {
     test: /\.css$/,
     loader: cssExtractor.extract({
       fallbackLoader: 'style-loader',
