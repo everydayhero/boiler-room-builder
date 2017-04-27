@@ -2,10 +2,6 @@ module.exports = {
   css: [
     'css'
   ],
-  sass: [
-    'scss',
-    'sass'
-  ],
   json: [
     'json'
   ],

@@ -4,7 +4,6 @@ const opts = require('../../config/babel')
 function noop () { return {} }
 [].concat(
   extensions['css'],
-  extensions['sass'],
   extensions['audio'],
   extensions['fonts'],
   extensions['images'],
