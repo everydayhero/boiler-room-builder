@@ -6,6 +6,7 @@ const {
   inputDir = join(process.cwd(), 'source'),
   outputDir = join(process.cwd(), 'dist'),
   basePath = '/',
+  assetPath = process.env.CDN_URL,
   config: sharedConfigPath,
   serverConfig: serverConfigPath,
   clientConfig: clientConfigPath,
@@ -36,6 +37,7 @@ const {
   inputDir,
   outputDir,
   basePath,
+  assetPath,
   client,
   server,
   shared,
@@ -48,6 +50,7 @@ serve({
   inputDir,
   outputDir,
   basePath,
+  assetPath,
   clientConfig,
   serverConfig,
   devConfig
