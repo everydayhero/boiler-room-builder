@@ -43,7 +43,7 @@ const rules = [
   {
     test: /\.css$/,
     loader: cssExtractor.extract({
-      fallbackLoader: 'style-loader',
+      fallback: 'style-loader',
       loader: [
         {
           loader: 'css-loader'
