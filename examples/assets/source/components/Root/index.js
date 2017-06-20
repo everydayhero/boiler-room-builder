@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import './style.scss'
+import './style.css'
 
 export default ({ children }) => (
   <div>
