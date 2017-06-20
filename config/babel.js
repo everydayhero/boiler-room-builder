@@ -1,6 +1,10 @@
 module.exports = {
   presets: [
-    'latest',
+    ['env', {
+      'targets': {
+        'browsers': ['last 2 versions', '> 1%']
+      }
+    }],
     'stage-0',
     'react'
   ]
