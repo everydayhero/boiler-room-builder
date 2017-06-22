@@ -36,6 +36,7 @@
     "postcss-loader": "^0.9.1",
     "progress-bar": "^0.1.1",
     "progress-bar-webpack-plugin": "^1.8.0",
+    "proxyquire": "^1.8.0",
     "react-addons-test-utils": "^15.3.2",
     "resolve-url-loader": "^1.6.0",
     "s3": "^4.4.0",
