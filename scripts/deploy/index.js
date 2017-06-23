@@ -2,6 +2,7 @@ const {
   target,
   bucket,
   prefix,
+  basePath = '/',
   dir = 'dist',
   deleteRemoved = true
 } = require('yargs').argv
@@ -18,7 +19,7 @@ if (target === 's3') {
 } else if (target === 'gh-pages') {
   deployGithubPages(dir)
 } else if (target === 'lambda') {
-  deployLambda(dir)
+  deployLambda({ dir, basePath })
 } else {
   console.log('Invalid target')
   process.exit(9)
