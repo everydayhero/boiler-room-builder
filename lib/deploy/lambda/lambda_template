@@ -33,7 +33,7 @@ const binaryMimeTypes = [
 exports.handler = (event, context) => {
   return Promise.resolve({ assets: ASSETS }).then(init).then((runner) => {
     const app = createApp({
-      staticDir: 'STATIC_DIR',
+      staticDir: './public',
       runner,
       basePath: 'BASE_PATH'
     })
