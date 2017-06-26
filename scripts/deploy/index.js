@@ -20,7 +20,12 @@ if (target === 's3') {
 } else if (target === 'gh-pages') {
   deployGithubPages(dir)
 } else if (target === 'lambda') {
-  deployLambda(dir, { basePath, fnName })
+  deployLambda(dir, {
+    basePath,
+    fnName,
+    bucket,
+    prefix
+  })
 } else {
   console.log('Invalid target')
   process.exit(9)
