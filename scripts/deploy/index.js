@@ -2,6 +2,7 @@ const {
   target,
   bucket,
   prefix,
+  fnName,
   basePath = '/',
   dir = 'dist',
   deleteRemoved = true
@@ -19,7 +20,7 @@ if (target === 's3') {
 } else if (target === 'gh-pages') {
   deployGithubPages(dir)
 } else if (target === 'lambda') {
-  deployLambda({ dir, basePath })
+  deployLambda(dir, { basePath, fnName })
 } else {
   console.log('Invalid target')
   process.exit(9)
