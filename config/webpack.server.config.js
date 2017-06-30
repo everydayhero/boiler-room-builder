@@ -1,7 +1,7 @@
 const nodeExternals = require('webpack-node-externals')
 
 const entry = {
-  server: './server.js'
+  server: './server'
 }
 
 const externals = [nodeExternals({

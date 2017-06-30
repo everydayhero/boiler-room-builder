@@ -57,7 +57,7 @@ const rules = [
 ]
 
 const entry = {
-  main: './client.js'
+  main: './client'
 }
 
 module.exports = {
