@@ -19,7 +19,8 @@ module.exports = {
   fonts: [
     'eot',
     'ttf',
-    'woff'
+    'woff',
+    'woff2'
   ],
   video: [
     'webm',
