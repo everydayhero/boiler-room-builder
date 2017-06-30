@@ -9,7 +9,7 @@ const extensionsFlat = [].concat(
 )
 const fileLoaders = extensionsFlat.map((ext) => ({
   test: new RegExp(`\\.${ext}$`),
-  loader: 'file-loader'
+  use: 'file-loader'
 }))
 
 const rules = [
