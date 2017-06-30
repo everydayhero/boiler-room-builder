@@ -26,7 +26,7 @@ const uglify = new webpack.optimize.UglifyJsPlugin({
   sourceMap: true
 })
 const define = new webpack.DefinePlugin({
-  'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`
+  'process.env.NODE_ENV': `'${process.env.NODE_ENV || ''}'`
 })
 
 const plugins = [
