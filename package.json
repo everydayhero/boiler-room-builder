@@ -45,7 +45,7 @@
     "standard": "^9.0.2",
     "standard-loader": "^5.0.0",
     "style-loader": "^0.13.1",
-    "webpack": "^2.2.0",
+    "webpack": "^3.0.0",
     "webpack-dashboard": "^0.2.0",
     "webpack-dev-server": "^2.2.0",
     "webpack-merge": "^2.6.1",
