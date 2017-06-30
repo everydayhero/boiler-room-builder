@@ -1,17 +1,17 @@
 const nodeExternals = require('webpack-node-externals')
 
 const entry = {
-  server: './server.js'
+  server: './server'
 }
 
 const externals = [nodeExternals({
   whitelist: [/\.(?!(?:jsx?|json)$).{1,5}$/i]
 })]
 
-const loaders = [
+const rules = [
   {
-    test: /\.(scss|sass|css)$/,
-    loader: 'null'
+    test: /\.css$/,
+    loader: 'null-loader'
   }
 ]
 
@@ -23,5 +23,5 @@ module.exports = {
     libraryTarget: 'commonjs',
     filename: 'server.js'
   },
-  module: { loaders }
+  module: { rules }
 }
