@@ -11,7 +11,7 @@ const externals = [nodeExternals({
 const rules = [
   {
     test: /\.css$/,
-    loader: 'null-loader'
+    use: 'null-loader'
   }
 ]
 

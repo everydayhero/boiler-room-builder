@@ -15,13 +15,6 @@ const cssExtractor = new ExtractTextPlugin({
   allChunks: true
 })
 
-// Required temporarily until extract-text and postcss support options key right
-const loaderOptions = new webpack.LoaderOptionsPlugin({
-  options: {
-    postcss: [autoprefixer]
-  }
-})
-
 const uglify = new webpack.optimize.UglifyJsPlugin({
   sourceMap: true
 })
@@ -30,7 +23,6 @@ const define = new webpack.DefinePlugin({
 })
 
 const plugins = [
-  loaderOptions,
   cssExtractor,
   define
 ].concat(
@@ -42,14 +34,17 @@ const plugins = [
 const rules = [
   {
     test: /\.css$/,
-    loader: cssExtractor.extract({
+    use: cssExtractor.extract({
       fallback: 'style-loader',
-      loader: [
+      use: [
+        'css-loader',
         {
-          loader: 'css-loader'
-        },
-        {
-          loader: 'postcss-loader'
+          loader: 'postcss-loader',
+          options: {
+            plugins: [
+              autoprefixer()
+            ]
+          }
         }
       ]
     })
