@@ -11,29 +11,6 @@ Resources:
       Variables:
         ServerlessExpressLambdaFunctionName: !Ref AWS_FN_NAME
 
-  LambdaExecutionRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          Effect: Allow
-          Principal:
-            Service: lambda.amazonaws.com
-          Action: sts:AssumeRole
-      Path: "/"
-      Policies:
-      - PolicyName: root
-        PolicyDocument:
-          Version: '2012-10-17'
-          Statement:
-          - Effect: Allow
-            Action:
-            - logs:CreateLogGroup
-            - logs:CreateLogStream
-            - logs:PutLogEvents
-            Resource: arn:aws:logs:*:*:*
-
   LambdaApiGatewayExecutionPermission:
     Type: AWS::Lambda::Permission
     Properties:
@@ -56,7 +33,7 @@ Resources:
       CodeUri: ./lambda.zip
       Handler: lambda.handler
       MemorySize: 1024
-      Role: !GetAtt LambdaExecutionRole.Arn
+      Role: AWS_IAM_ROLE
       Runtime: nodejs6.10
       Timeout: 30
       Events:
