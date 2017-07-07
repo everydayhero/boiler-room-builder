@@ -7,7 +7,7 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       DefinitionUri: ./simple-proxy-api.yaml
-      StageName: prod
+      StageName: AWS_API_STAGE
       Variables:
         ServerlessExpressLambdaFunctionName: !Ref AWS_FN_NAME
 
@@ -33,7 +33,7 @@ Resources:
       CodeUri: ./lambda.zip
       Handler: lambda.handler
       MemorySize: 1024
-      Role: AWS_IAM_ROLE
+      Role: arn:aws:iam::AWS_ACCOUNT_ID:role/AWS_IAM_ROLE
       Runtime: nodejs6.10
       Timeout: 30
       Events:
@@ -72,7 +72,7 @@ Outputs:
         - !Ref AWS::Region
         - "#/apis/"
         - !Ref ApiGatewayApi
-        - "/stages/prod"
+        - "/stages/AWS_API_STAGE"
 
   ApiUrl:
     Description: Invoke URL for your API. Clicking this link will perform a GET request
@@ -83,4 +83,4 @@ Outputs:
         - !Ref ApiGatewayApi
         - ".execute-api."
         - !Ref AWS::Region
-        - ".amazonaws.com/prod/"
+        - ".amazonaws.com/AWS_API_STAGE/"

@@ -196,6 +196,42 @@ This can take the following flags:
 
 - `--dir` (optional): Directory of files to upload (defaults to `dist`)
 
+### AWS Lambda
+
+```sh
+$ brb deploy --target lambda
+```
+
+This can take the following flags:
+
+- `--bucket` (required): The bucket name where the lambda is uploaded to
+- `--fn-name` (required): The Lambda function name (this name is also used in Cloudformation and API Gateway)
+- `--prefix` (optional): Folder name (S3 prefix) where the lambda is uploaded to
+- `--dir` (optional): Directory of files to upload (defaults to `dist`)
+- `--base-path` (optional): Required for staging when a custom domain is not set.
+
+The Lambda publisher uses the AWS SDK under the hood, and therefore requires the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_ACCOUNT_ID` and `AWS_IAM_ROLE` environment variables to be set.
+
+```json
+{
+  "scripts": {
+    "build": "brb build",
+    "deploy": "yarn build && brb deploy --target lambda --bucket mybucket.com --prefix mysite.mybucket.com --fn-name myFunction --base-path /base-path/"
+  }
+}
+```
+
+**shell:**
+
+```sh
+$ export AWS_ACCESS_KEY_ID=MYSPECIALKEY
+$ export AWS_SECRET_ACCESS_KEY=MYSPECIALSECRET
+$ export AWS_REGION=us-east-1
+$ export AWS_ACCOUNT_ID=MY_ACCOUNT_ID
+$ export AWS_IAM_ROLE=LambdaLogWriter
+$ yarn deploy
+```
+
 ## Publishing new versions to NPM
 
 Once your changes are merged use a single version bump commit to trigger publishing to npm. The easiest way is to use the [npm version](https://docs.npmjs.com/cli/version) command, for example:

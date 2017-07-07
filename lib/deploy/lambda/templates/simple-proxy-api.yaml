@@ -2,7 +2,7 @@
 swagger: 2.0
 info:
   title: AWS_FN_NAME
-basePath: /prod
+basePath: /AWS_API_STAGE
 schemes:
 - https
 paths:
