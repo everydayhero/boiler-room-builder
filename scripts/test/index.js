@@ -5,6 +5,8 @@ const { inputDir = './source' } = require('yargs').argv
 const defaultOpts = [
   '--recursive',
   '--require',
+  'raf/polyfill',
+  '--require',
   join(__dirname, './setup.js'),
   '--compilers',
   `js:${join(__dirname, './compiler.js')}`
