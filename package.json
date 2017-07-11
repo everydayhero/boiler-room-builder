@@ -62,5 +62,8 @@
     "ignore": [
       "node_modules"
     ]
+  },
+  "devDependencies": {
+    "raf": "^3.3.2"
   }
 }
