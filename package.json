@@ -18,6 +18,7 @@
     "aws-serverless-express": "^3.0.2",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.5.2",
     "babel-preset-flow": "^6.23.0",
@@ -29,6 +30,8 @@
     "connect-logger": "0.0.1",
     "connect-mount": "^1.0.0",
     "css-loader": "^0.28.4",
+    "eslint-plugin-flowtype": "^2.35.0",
+    "eslint-plugin-standard": "^3.0.1",
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
     "flow-bin": "^0.52.0",
@@ -48,7 +51,7 @@
     "resolve-url-loader": "^1.6.0",
     "s3": "^4.4.0",
     "serve-static": "^1.11.1",
-    "standard": "^9.0.2",
+    "standard": "^10.0.3",
     "standard-loader": "^5.0.0",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.0",
@@ -64,6 +67,10 @@
     ],
     "ignore": [
       "node_modules"
+    ],
+    "parser": "babel-eslint",
+    "plugins": [
+      "flowtype"
     ]
   },
   "devDependencies": {

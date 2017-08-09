@@ -9,7 +9,7 @@ function noop () { return {} }
   extensions['images'],
   extensions['video']
 ).forEach((ext) => {
-  require.extensions[`.${ext}`] = noop
+  require.extensions[`.${ext}`] = noop // eslint-disable-line node/no-deprecated-api
 })
 
 require('babel-register')(opts)
