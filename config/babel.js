@@ -8,5 +8,9 @@ module.exports = {
     'stage-0',
     'react',
     'flow'
+  ],
+  plugins: [
+    'syntax-dynamic-import',
+    'dynamic-import-node'
   ]
 }
