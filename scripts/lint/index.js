@@ -3,7 +3,9 @@ const { inputDir = './source' } = require('yargs').argv
 
 const args = [
   require.resolve('standard/bin/cmd'),
-  `${inputDir}/**/*.js`
+  `${inputDir}/**/*.js`,
+  '--parser',
+  'babel-eslint'
 ].concat(process.argv.slice(2))
 
 const lint = spawn(
