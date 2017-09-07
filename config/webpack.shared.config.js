@@ -20,7 +20,12 @@ const rules = [
         loader: 'babel-loader',
         options: babelConfig
       },
-      'standard-loader'
+      {
+        loader: 'standard-loader',
+        options: {
+          parser: 'babel-eslint'
+        }
+      }
     ],
     exclude: /node_modules|dist/
   }
