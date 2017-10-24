@@ -1,5 +1,4 @@
 module.exports = {
-  quiet: true,
   noInfo: false,
   stats: {
     assets: true,
