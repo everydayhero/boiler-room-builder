@@ -50,7 +50,7 @@
     "progress-bar": "^0.1.1",
     "progress-bar-webpack-plugin": "^1.8.0",
     "proxyquire": "^1.8.0",
-    "resolve-url-loader": "^1.6.0",
+    "resolve-url-loader": "^2.2.0",
     "s3": "^4.4.0",
     "serve-static": "^1.11.1",
     "standard": "^10.0.3",
