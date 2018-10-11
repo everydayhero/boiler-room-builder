@@ -23,5 +23,6 @@ module.exports = {
     libraryTarget: 'commonjs',
     filename: 'server.js'
   },
-  module: { rules }
+  module: { rules },
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development'
 }

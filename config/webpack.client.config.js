@@ -1,5 +1,4 @@
-const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MinisCssExtractPlugin = require('mini-css-extract-plugin')
 const autoprefixer = require('autoprefixer')
 
 const PROD = process.env.NODE_ENV === 'production'
@@ -10,44 +9,27 @@ const bundleName = (ext, name) => (
     : `${name || '[name]'}.${ext}`
 )
 
-const cssExtractor = new ExtractTextPlugin({
-  filename: bundleName('css'),
-  allChunks: true
-})
-
-const uglify = new webpack.optimize.UglifyJsPlugin({
-  sourceMap: true
-})
-const define = new webpack.DefinePlugin({
-  'process.env.NODE_ENV': `'${process.env.NODE_ENV || ''}'`
-})
-
 const plugins = [
-  cssExtractor,
-  define
-].concat(
-  !PROD ? [] : [
-    uglify
-  ]
-)
+  new MinisCssExtractPlugin({
+    filename: bundleName('css')
+  })
+]
 
 const rules = [
   {
     test: /\.css$/,
-    use: cssExtractor.extract({
-      fallback: 'style-loader',
-      use: [
-        'css-loader',
-        {
-          loader: 'postcss-loader',
-          options: {
-            plugins: [
-              autoprefixer()
-            ]
-          }
+    use: [
+      MinisCssExtractPlugin.loader,
+      'css-loader',
+      {
+        loader: 'postcss-loader',
+        options: {
+          plugins: [
+            autoprefixer()
+          ]
         }
-      ]
-    })
+      }
+    ]
   }
 ]
 
@@ -63,5 +45,6 @@ module.exports = {
   },
   module: { rules },
   devtool: PROD ? 'source-map' : 'eval-source-map',
-  plugins
+  plugins,
+  mode: PROD ? 'production' : 'development'
 }

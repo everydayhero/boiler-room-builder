@@ -241,3 +241,13 @@ Once your changes are merged use a single version bump commit to trigger publish
 Then push to `master` with `git push origin master --follow-tags`.
 
 Make sure you bump the version as per [semver](http://semver.org/).
+
+## Upgrading to version 3.0
+
+Boiler Room Builder 3.0 is a major version dependencies update,. It now uses the Webpack 4.x, Babel 7.x,
+and Standard 12.x. Please refer to the docs for each individual dependency for how this change might affect your app.
+
+The most outward facing change to look out for is that as of Babel 7, `babel-preset-stage-0` no longer exists. Babel's
+recommendation is to explicitly import on any experimental features you need. You probably aren't using a `stage`
+feature in your app, but if you are you'll need to include the specific transform or plugin from Babel in your own
+app's Babel config. 
