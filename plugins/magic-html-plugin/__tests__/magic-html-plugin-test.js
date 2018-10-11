@@ -5,12 +5,12 @@ const defaultRenderDocument = require('../../../lib/default-render-document')
 it('#constructor takes a render function option', () => {
   const mahRender = () => 'Foo'
   const magicHTML = new MagicHTMLPlugin({ render: mahRender })
-  assert.equal(magicHTML.render, mahRender)
+  assert.strictEqual(magicHTML.render, mahRender)
 })
 
 it('#contructor defaults the render option to defaultRenderDocument', () => {
   const magicHTML = new MagicHTMLPlugin()
-  assert.equal(magicHTML.render, defaultRenderDocument)
+  assert.strictEqual(magicHTML.render, defaultRenderDocument)
 })
 
 it('#apply will add the result of calling #render as an asset called `index.html`', (done) => {
@@ -30,7 +30,7 @@ it('#apply will add the result of calling #render as an asset called `index.html
   const mockCompiler = {
     plugin (_, callback) {
       callback(mockCompilation, () => {
-        assert.equal(
+        assert.strictEqual(
           mockCompilation.assets['index.html'].source(),
           'Foo'
         )
@@ -70,7 +70,7 @@ it('#apply will pass assets from chunks the provided render method', (done) => {
   const mockCompiler = {
     plugin (_, callback) {
       callback(mockCompilation, () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
           assetsPassed,
           ['/main-123.css', '/main-123.js']
         )
