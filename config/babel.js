@@ -1,16 +1,15 @@
 module.exports = {
   presets: [
-    ['env', {
+    ['@babel/env', {
       'targets': {
         'browsers': ['last 2 versions', '> 1%']
       }
     }],
-    'stage-0',
-    'react',
-    'flow'
+    '@babel/react',
+    '@babel/flow'
   ],
   plugins: [
-    'syntax-dynamic-import',
+    '@babel/syntax-dynamic-import',
     'dynamic-import-node'
   ]
 }

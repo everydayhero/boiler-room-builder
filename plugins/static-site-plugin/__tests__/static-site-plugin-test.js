@@ -4,7 +4,7 @@ const StaticSitePlugin = require('../')
 it('#constructor takes an app module', () => {
   const myApp = () => {}
   const staticSite = new StaticSitePlugin({ app: myApp })
-  assert.equal(staticSite.app, myApp)
+  assert.strictEqual(staticSite.app, myApp)
 })
 
 it('#apply passes assets from stats to the passed app function', (done) => {
@@ -39,7 +39,7 @@ it('#apply passes assets from stats to the passed app function', (done) => {
   const mockCompiler = {
     plugin (_, callback) {
       callback(mockCompilation, () => {
-        assert.deepEqual(
+        assert.deepStrictEqual(
           passedAssets,
           ['/main-123.css', '/main-123.js']
         )
@@ -79,11 +79,11 @@ it('#apply adds a <route>/index.html per staticRoute on the return value of `app
   const mockCompiler = {
     plugin (_, callback) {
       callback(mockCompilation, () => {
-        assert.equal(
+        assert.strictEqual(
           mockCompilation.assets['index.html'].source(),
           'ROUTE: /'
         )
-        assert.equal(
+        assert.strictEqual(
           mockCompilation.assets['foo/index.html'].source(),
           'ROUTE: /foo'
         )

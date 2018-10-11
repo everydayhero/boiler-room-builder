@@ -12,4 +12,4 @@ function noop () { return {} }
   require.extensions[`.${ext}`] = noop // eslint-disable-line node/no-deprecated-api
 })
 
-require('babel-register')(opts)
+require('@babel/register')(opts)
