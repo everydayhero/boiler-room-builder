@@ -1,19 +1,24 @@
-const jsdom = require('jsdom')
+const { JSDOM } = require('jsdom')
 
-global.document = jsdom.jsdom('<html><body></body></html>')
-global.window = document.defaultView
-global.navigator = window.navigator
+const jsdom = new JSDOM('<!doctype html><html><body></body></html>')
+const { window } = jsdom
 
-// properties must be extracted from a document that was created that does not
-// use a vm context.
-const properties = Object.getOwnPropertyNames(
-  jsdom.jsdom('', { features: { ProcessExternalResources: false } }).defaultView
-)
+function copyProps (src, target) {
+  Object.defineProperties(target, {
+    ...Object.getOwnPropertyDescriptors(src),
+    ...Object.getOwnPropertyDescriptors(target)
+  })
+}
 
-// Attach all window properties to global, so things like HTMLElement are in
-// scope. See https://github.com/sinonjs/sinon/issues/1377
-properties.forEach((property) => {
-  if (typeof global[property] === 'undefined') {
-    global[property] = document.defaultView[property]
-  }
-})
+global.window = window
+global.document = window.document
+global.navigator = {
+  userAgent: 'node.js'
+}
+global.requestAnimationFrame = function (callback) {
+  return setTimeout(callback, 0)
+}
+global.cancelAnimationFrame = function (id) {
+  clearTimeout(id)
+}
+copyProps(window, global)
