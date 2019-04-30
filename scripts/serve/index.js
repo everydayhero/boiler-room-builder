@@ -11,6 +11,7 @@ const {
   serverConfig: serverConfigPath,
   clientConfig: clientConfigPath,
   devConfig: devConfigPath,
+  middlewareConfig: middlewareConfigPath,
   port = 8080,
   outputToBase = false
 } = require('yargs').argv
@@ -29,10 +30,15 @@ const dev = devConfigPath
   ? require(join(process.cwd(), devConfigPath))
   : {}
 
+const middleware = middlewareConfigPath
+  ? require(join(process.cwd(), middlewareConfigPath))
+  : { middlewares: [] }
+
 const {
   clientConfig,
   serverConfig,
-  devConfig
+  devConfig,
+  middlewaresConfig
 } = createConfigs({
   inputDir,
   outputDir,
@@ -42,6 +48,7 @@ const {
   server,
   shared,
   dev,
+  middleware,
   outputToBase
 })
 
@@ -53,5 +60,6 @@ serve({
   cdnUrl,
   clientConfig,
   serverConfig,
-  devConfig
+  devConfig,
+  middlewaresConfig
 })
