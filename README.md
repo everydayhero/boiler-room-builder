@@ -113,6 +113,38 @@ Relative path to a webpack config specific to the client bundle.
 
 Relative path to a webpack config specific to the server bundle.
 
+#### `--middleware-config`
+
+Relative path to a config containing `connect` middlewares. These middlewares will be
+prepended to the middleware stack on both the dev and prod servers.
+
+A middleware config file is a javascript module with an exports object that looks like this:
+
+```js
+const stats = require('stats-middleware')
+
+module.exports = {
+  middlewares: [
+    {
+      // Requirable javascript path - either an npm module or an absolute path
+      middleware: '/path/to/middleware',
+      // Options has that will be used to initialise the middleware. Only the typical
+      // 'initialise with an options hash' middleware will work like this. If your
+      // middleware needs to be initialised differently, require it and initialise it as below.
+      options: {
+        optionA: true,
+        optionB: 'option'
+      }
+    },
+    {
+      // Probably the more typical use case: just require a middleware, set it up, and set
+      // the resulting middleware function to the middleware key.
+      middleware: stats({ /* ...config */ })
+    }
+  ]
+}
+```
+
 
 ## Test your application
 
