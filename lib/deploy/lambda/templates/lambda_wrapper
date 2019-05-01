@@ -30,16 +30,16 @@ const binaryMimeTypes = [
   'text/xml'
 ]
 
-exports.handler = (event, context) => {
-  return Promise.resolve({ assets: ASSETS }).then(init).then((runner) => {
-    const app = createApp({
+exports.handler = async (event, context) => {
+  const app = await Promise.resolve({ assets: ASSETS }).then(init).then((runner) => (
+    createApp({
       staticDir: './public',
       runner,
       basePath: 'BASE_PATH'
     })
+  ))
 
-    const server = awsServerlessExpress.createServer(app, null, binaryMimeTypes)
+  const server = awsServerlessExpress.createServer(app, null, binaryMimeTypes)
 
-    return awsServerlessExpress.proxy(server, event, context)
-  })
+  return awsServerlessExpress.proxy(server, event, context, 'PROMISE').promise
 }
