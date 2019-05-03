@@ -10,6 +10,7 @@ module.exports = {
   ],
   plugins: [
     '@babel/syntax-dynamic-import',
+    '@babel/plugin-proposal-export-default-from',
     'dynamic-import-node'
   ]
 }
