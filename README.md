@@ -38,7 +38,7 @@ The returned function will take a route return a Promise which may:
 
 ```
 export default ({ assets = [] }) =>
-  (route = '/') =>
+  (route = '/', request = {}) =>
     Promise.resolve({
       result: '<html />',
       // OR
@@ -282,4 +282,4 @@ and Standard 12.x. Please refer to the docs for each individual dependency for h
 The most outward facing change to look out for is that as of Babel 7, `babel-preset-stage-0` no longer exists. Babel's
 recommendation is to explicitly import on any experimental features you need. You probably aren't using a `stage`
 feature in your app, but if you are you'll need to include the specific transform or plugin from Babel in your own
-app's Babel config. 
+app's Babel config.
