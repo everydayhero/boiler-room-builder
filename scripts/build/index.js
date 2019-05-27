@@ -10,7 +10,8 @@ const {
   config: sharedConfigPath,
   serverConfig: serverConfigPath,
   clientConfig: clientConfigPath,
-  outputToBase = false
+  outputToBase = false,
+  forLambda = false
 } = require('yargs').argv
 
 const client = clientConfigPath
@@ -34,7 +35,8 @@ const {
   client,
   server,
   shared,
-  outputToBase
+  outputToBase,
+  forLambda
 })
 
 build({
