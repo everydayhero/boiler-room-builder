@@ -1,6 +1,5 @@
 #!/bin/bash
 
 set -euo pipefail
-ulimit -n 20000
-echo -e "$NPM_USER\n$NPM_PASS\n$NPM_EMAIL" | npm login
+echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
 npm publish
