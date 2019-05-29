@@ -18,13 +18,17 @@ module.exports = class {
         const routes = runner.staticRoutes || ['/']
 
         return Promise.all(routes.map((route) => (
-          runner(route).then(({ result }) => {
+          runner(route).then(({ body, result }) => {
+            if (result) {
+              console.warn('`result` has been deprecated and will be removed in a future version of BRB. Please use `body` instead.')
+            }
+
             assets[path.join(route.slice(1), 'index.html')] = {
               source () {
-                return result
+                return result || body
               },
               size () {
-                return result.length
+                return (result || body).length
               }
             }
           })
