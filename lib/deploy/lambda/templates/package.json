@@ -10,7 +10,7 @@
     "connect": "^3.6.6",
     "connect-logger": "0.0.1",
     "connect-mount": "^1.0.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.13",
     "serve-static": "^1.11.1"
   }
 }
