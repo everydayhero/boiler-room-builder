@@ -3,11 +3,11 @@ const opts = require('../../config/babel')
 
 function noop () { return {} }
 [].concat(
-  extensions['css'],
-  extensions['audio'],
-  extensions['fonts'],
-  extensions['images'],
-  extensions['video']
+  extensions.css,
+  extensions.audio,
+  extensions.fonts,
+  extensions.images,
+  extensions.video
 ).forEach((ext) => {
   require.extensions[`.${ext}`] = noop // eslint-disable-line node/no-deprecated-api
 })

@@ -11,7 +11,7 @@ const isNodeArg = (arg) => (
 
 const script = process.argv[2]
 
-let args = [
+const args = [
   join(__dirname, `../scripts/${script}`)
 ]
 

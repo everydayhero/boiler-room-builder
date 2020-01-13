@@ -2,10 +2,10 @@ const extensions = require('./extensions')
 const babelConfig = require('./babel')
 
 const extensionsFlat = [].concat(
-  extensions['audio'],
-  extensions['fonts'],
-  extensions['images'],
-  extensions['video']
+  extensions.audio,
+  extensions.fonts,
+  extensions.images,
+  extensions.video
 )
 const fileLoaders = extensionsFlat.map((ext) => ({
   test: new RegExp(`\\.${ext}$`),
