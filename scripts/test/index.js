@@ -6,8 +6,8 @@ const defaultOpts = [
   '--recursive',
   '--require',
   join(__dirname, './setup.js'),
-  '--compilers',
-  `js:${join(__dirname, './compiler.js')}`
+  '--require',
+  join(__dirname, './compiler.js')
 ]
 
 const args = [
