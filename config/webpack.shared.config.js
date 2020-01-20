@@ -1,5 +1,6 @@
 const extensions = require('./extensions')
 const babelConfig = require('./babel')
+const babelTypescriptConfig = require('./babelTypescript')
 
 const extensionsFlat = [].concat(
   extensions.audio,
@@ -25,6 +26,19 @@ const rules = [
         options: {
           parser: 'babel-eslint'
         }
+      }
+    ],
+    exclude: /node_modules|dist/
+  },
+  {
+    test: /\.(ts|tsx)?$/,
+    use: [
+      {
+        loader: 'babel-loader',
+        options: babelTypescriptConfig
+      },
+      {
+        loader: 'eslint-loader'
       }
     ],
     exclude: /node_modules|dist/

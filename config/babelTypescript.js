@@ -8,7 +8,7 @@ module.exports = {
       corejs: 3
     }],
     '@babel/react',
-    '@babel/flow'
+    ['@babel/preset-typescript', { allExtensions: true, isTsx: true }]
   ],
   plugins: [
     '@babel/syntax-dynamic-import',
