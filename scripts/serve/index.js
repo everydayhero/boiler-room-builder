@@ -13,7 +13,8 @@ const {
   devConfig: devConfigPath,
   middlewareConfig: middlewareConfigPath,
   port = 8080,
-  outputToBase = false
+  outputToBase = false,
+  supportTypescript = false
 } = require('yargs').argv
 
 const client = clientConfigPath
@@ -49,7 +50,8 @@ const {
   shared,
   dev,
   middleware,
-  outputToBase
+  outputToBase,
+  supportTypescript
 })
 
 serve({
