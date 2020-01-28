@@ -13,7 +13,7 @@ const fileLoaders = extensionsFlat.map((ext) => ({
   use: 'file-loader'
 }))
 
-const rules = [
+const javascriptRules = [
   {
     test: /\.(js|jsx)?$/,
     use: [
@@ -29,9 +29,12 @@ const rules = [
       }
     ],
     exclude: /node_modules|dist/
-  },
+  }
+].concat(fileLoaders)
+
+const typescriptRules = [
   {
-    test: /\.(ts|tsx)?$/,
+    test: /\.(js|jsx|ts|tsx)?$/,
     use: [
       {
         loader: 'babel-loader',
@@ -47,8 +50,10 @@ const rules = [
 
 const plugins = []
 
-module.exports = {
-  stats: { children: false },
-  module: { rules },
-  plugins
+module.exports = (supportTypescript = false) => {
+  return {
+    stats: { children: false },
+    plugins,
+    module: { rules: supportTypescript ? typescriptRules : javascriptRules }
+  }
 }
