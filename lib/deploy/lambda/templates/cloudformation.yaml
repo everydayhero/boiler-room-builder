@@ -34,7 +34,7 @@ Resources:
       Handler: lambda.handler
       MemorySize: 1024
       Role: arn:aws:iam::AWS_ACCOUNT_ID:role/AWS_IAM_ROLE
-      Runtime: nodejs12.x
+      Runtime: nodejs10.x
       Timeout: 30
       Events:
         ProxyApiRoot:
