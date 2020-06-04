@@ -10,6 +10,7 @@ const {
   config: sharedConfigPath,
   serverConfig: serverConfigPath,
   clientConfig: clientConfigPath,
+  asyncBuildConfig: asyncConfigPath,
   outputToBase = false,
   forLambda = false,
   supportTypescript = false
@@ -24,10 +25,14 @@ const server = serverConfigPath
 const shared = sharedConfigPath
   ? require(join(process.cwd(), sharedConfigPath))
   : {}
+const asyncBuildConfig = asyncConfigPath
+  ? require(join(process.cwd(), asyncConfigPath))
+  : {}
 
 const {
   clientConfig,
-  serverConfig
+  serverConfig,
+  asyncConfig
 } = createConfigs({
   inputDir,
   outputDir,
@@ -36,6 +41,7 @@ const {
   client,
   server,
   shared,
+  asyncBuildConfig,
   outputToBase,
   forLambda,
   supportTypescript
@@ -46,5 +52,6 @@ build({
   outputDir,
   basePath,
   clientConfig,
-  serverConfig
+  serverConfig,
+  asyncConfig
 })
